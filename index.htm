@@ -8,7 +8,6 @@
     <meta name="keywords" content="Джуніор, Вікіпедія, енциклопедія, кіт, сфінкс.">
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
     <style>
-        /* Основні налаштування */
         body, html {
             margin: 0;
             padding: 0;
@@ -18,7 +17,6 @@
             scroll-behavior: smooth;
         }
 
-        /* Анімація появи */
         @keyframes fadeIn {
             from { opacity: 0; transform: translateY(10px); }
             to { opacity: 1; transform: translateY(0); }
@@ -34,7 +32,6 @@
             animation: fadeIn 0.8s ease-out;
         }
 
-        /* Стилі заголовка */
         .wiki-header {
             border-bottom: 1px solid #a2a9b1;
             margin-bottom: 20px;
@@ -55,7 +52,6 @@
             margin-bottom: 15px;
         }
 
-        /* Контент */
         .wiki-content {
             display: flex;
             gap: 30px;
@@ -66,8 +62,7 @@
             flex: 1;
             font-size: 16px;
         }
-        
-        /* Зміст */
+
         .toc {
             background-color: #f8f9fa;
             border: 1px solid #a2a9b1;
@@ -99,7 +94,6 @@
             text-decoration: underline;
         }
 
-        /* Інфобокс */
         .infobox {
             width: 300px;
             background-color: #f8f9fa;
@@ -147,7 +141,6 @@
             border-bottom: 1px solid #eaecf0;
         }
 
-        /* Список звичок */
         .habits-list {
             background: #fdfdfd;
             border-left: 5px solid #64b5f6;
@@ -169,8 +162,7 @@
             font-size: 0.9em;
             font-weight: bold;
         }
-        
-        /* Аудіоплеєр */
+
         .audio-section {
             border: 1px solid #c8ccd1;
             background-color: #f8f9fa;
@@ -181,7 +173,7 @@
             gap: 15px;
             margin: 20px 0;
         }
-        
+
         .audio-section audio {
             height: 40px;
         }
@@ -204,7 +196,6 @@
             font-family: 'Linux Libertine', 'Georgia', serif;
         }
 
-        /* --- Стилі гри (Покращені) --- */
         #game-area {
             position: relative;
             width: 100%;
@@ -258,33 +249,342 @@
             z-index: 10;
         }
 
-        #start-btn:hover { 
+        #start-btn:hover {
             transform: scale(1.05);
             box-shadow: 0 8px 20px rgba(33, 150, 243, 0.4);
+        }
+
+        /* ===== PAGINATION ===== */
+        .page-section { display: none; }
+        .page-section.active { display: block; animation: fadeIn 0.4s ease-out; }
+
+        .wiki-pagination {
+            margin-top: 40px;
+            padding-top: 15px;
+            border-top: 1px solid #a2a9b1;
+            font-size: 14px;
+            color: #54595d;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            flex-wrap: wrap;
+        }
+        .wiki-pagination span { color: #54595d; }
+        .wiki-pagination a {
+            color: #0645ad;
+            text-decoration: none;
+            cursor: pointer;
+            padding: 1px 4px;
+        }
+        .wiki-pagination a:hover { text-decoration: underline; }
+        .wiki-pagination .current-page {
+            font-weight: bold;
+            color: #202124;
+            padding: 1px 4px;
+        }
+        .wiki-pagination .nav-arrow {
+            font-size: 16px;
+            color: #0645ad;
+            cursor: pointer;
+            text-decoration: none;
+        }
+        .wiki-pagination .nav-arrow:hover { text-decoration: underline; }
+        .wiki-pagination .nav-arrow.disabled { color: #a2a9b1; cursor: default; pointer-events: none; }
+
+        /* ===== INTERACTIVE COMPONENTS ===== */
+
+        /* Quiz */
+        .quiz-box {
+            background: #f8f9fa;
+            border: 1px solid #a2a9b1;
+            border-radius: 4px;
+            padding: 20px;
+            margin: 20px 0;
+        }
+        .quiz-box h3 { margin-top: 0; font-family: Georgia, serif; }
+        .quiz-option {
+            display: block;
+            width: 100%;
+            text-align: left;
+            background: #fff;
+            border: 1px solid #c8ccd1;
+            padding: 10px 15px;
+            margin: 8px 0;
+            cursor: pointer;
+            border-radius: 3px;
+            font-size: 15px;
+            transition: background 0.2s;
+        }
+        .quiz-option:hover { background: #eaf0fb; }
+        .quiz-option.correct { background: #e8f5e9; border-color: #4caf50; color: #1b5e20; }
+        .quiz-option.wrong { background: #ffebee; border-color: #f44336; color: #b71c1c; }
+        .quiz-result { margin-top: 10px; font-weight: bold; font-size: 15px; }
+
+        /* Timeline */
+        .timeline {
+            border-left: 3px solid #a2a9b1;
+            padding-left: 20px;
+            margin: 20px 0;
+        }
+        .timeline-event {
+            position: relative;
+            margin-bottom: 20px;
+        }
+        .timeline-event::before {
+            content: '';
+            width: 12px; height: 12px;
+            background: #0645ad;
+            border-radius: 50%;
+            position: absolute;
+            left: -27px;
+            top: 4px;
+        }
+        .timeline-year {
+            font-weight: bold;
+            color: #0645ad;
+            font-size: 13px;
+        }
+
+        /* Mood meter */
+        .mood-meter {
+            background: #f8f9fa;
+            border: 1px solid #a2a9b1;
+            border-radius: 4px;
+            padding: 20px;
+            margin: 20px 0;
+        }
+        .mood-bar-wrap {
+            background: #e0e0e0;
+            border-radius: 10px;
+            height: 18px;
+            margin: 8px 0 4px;
+            overflow: hidden;
+        }
+        .mood-bar {
+            height: 100%;
+            border-radius: 10px;
+            transition: width 0.5s ease;
+        }
+        .mood-label { display: flex; justify-content: space-between; font-size: 13px; color: #54595d; }
+
+        /* Fact cards */
+        .fact-cards {
+            display: flex;
+            gap: 12px;
+            flex-wrap: wrap;
+            margin: 20px 0;
+        }
+        .fact-card {
+            background: #f8f9fa;
+            border: 1px solid #a2a9b1;
+            border-radius: 4px;
+            padding: 15px;
+            flex: 1;
+            min-width: 180px;
+            cursor: pointer;
+            transition: box-shadow 0.2s;
+            position: relative;
+        }
+        .fact-card:hover { box-shadow: 0 2px 8px rgba(0,0,0,0.12); }
+        .fact-card .card-front { font-weight: bold; font-size: 14px; color: #0645ad; }
+        .fact-card .card-back { font-size: 13px; color: #54595d; margin-top: 8px; display: none; }
+        .fact-card.flipped .card-back { display: block; }
+        .fact-card-hint { font-size: 11px; color: #a2a9b1; margin-top: 6px; }
+
+        /* Comparision table */
+        .compare-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            font-size: 14px;
+        }
+        .compare-table th {
+            background: #eaecf0;
+            border: 1px solid #a2a9b1;
+            padding: 8px 12px;
+            text-align: left;
+        }
+        .compare-table td {
+            border: 1px solid #a2a9b1;
+            padding: 8px 12px;
+        }
+        .compare-table tr:nth-child(even) td { background: #f8f9fa; }
+
+        /* Gallery */
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 10px;
+            margin: 20px 0;
+        }
+        .gallery-item {
+            background: #f8f9fa;
+            border: 1px solid #a2a9b1;
+            border-radius: 2px;
+            overflow: hidden;
+            cursor: pointer;
+        }
+        .gallery-item-inner {
+            width: 100%;
+            aspect-ratio: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 48px;
+            background: linear-gradient(135deg, #e3f2fd, #f8f9fa);
+        }
+        .gallery-caption { font-size: 11px; color: #54595d; padding: 5px 8px; text-align: center; }
+
+        /* Slider / Did you know */
+        .did-you-know {
+            background: #f0f3f8;
+            border: 1px solid #a2a9b1;
+            border-left: 4px solid #0645ad;
+            padding: 15px 20px;
+            margin: 20px 0;
+            border-radius: 2px;
+            position: relative;
+        }
+        .did-you-know-title { font-weight: bold; font-size: 13px; color: #54595d; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 8px; }
+        .dyk-text { font-size: 15px; }
+        .dyk-nav { margin-top: 10px; display: flex; gap: 8px; }
+        .dyk-btn {
+            background: none;
+            border: 1px solid #a2a9b1;
+            border-radius: 2px;
+            padding: 3px 10px;
+            font-size: 13px;
+            cursor: pointer;
+            color: #0645ad;
+        }
+        .dyk-btn:hover { background: #eaecf0; }
+
+        /* Map-like schedule */
+        .schedule-grid {
+            display: grid;
+            grid-template-columns: repeat(7, 1fr);
+            gap: 4px;
+            margin: 15px 0;
+            font-size: 12px;
+        }
+        .schedule-day { text-align: center; }
+        .schedule-day-name { font-weight: bold; color: #54595d; padding: 4px 0; }
+        .schedule-slot {
+            background: #e3f2fd;
+            border: 1px solid #bbdefb;
+            border-radius: 2px;
+            padding: 4px 2px;
+            text-align: center;
+            margin-bottom: 3px;
+            font-size: 11px;
+        }
+        .schedule-slot.sleep { background: #e8eaf6; border-color: #c5cae9; }
+        .schedule-slot.eat { background: #e8f5e9; border-color: #c8e6c9; }
+        .schedule-slot.play { background: #fff3e0; border-color: #ffe0b2; }
+        .schedule-slot.cuddle { background: #fce4ec; border-color: #f8bbd0; }
+
+        /* Personality wheel */
+        .personality-section { margin: 20px 0; }
+        .trait-row { margin-bottom: 12px; }
+        .trait-name { font-size: 14px; font-weight: 500; margin-bottom: 4px; }
+        .trait-bar-wrap { background: #e0e0e0; border-radius: 6px; height: 14px; overflow: hidden; }
+        .trait-bar { height: 100%; border-radius: 6px; }
+
+        /* Accordion */
+        .accordion-item {
+            border: 1px solid #a2a9b1;
+            border-radius: 2px;
+            margin-bottom: 6px;
+        }
+        .accordion-header {
+            padding: 10px 15px;
+            background: #f8f9fa;
+            cursor: pointer;
+            font-weight: 500;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            user-select: none;
+        }
+        .accordion-header:hover { background: #eaecf0; }
+        .accordion-body { display: none; padding: 12px 15px; font-size: 14px; border-top: 1px solid #a2a9b1; }
+        .accordion-body.open { display: block; }
+        .accordion-arrow { transition: transform 0.2s; }
+        .accordion-header.open .accordion-arrow { transform: rotate(90deg); }
+
+        /* Color picker demo */
+        .skin-color-demo {
+            background: #f8f9fa;
+            border: 1px solid #a2a9b1;
+            border-radius: 4px;
+            padding: 20px;
+            margin: 20px 0;
+        }
+        .color-swatches { display: flex; gap: 10px; flex-wrap: wrap; margin: 12px 0; }
+        .swatch {
+            width: 40px; height: 40px;
+            border-radius: 50%;
+            border: 2px solid #a2a9b1;
+            cursor: pointer;
+            transition: transform 0.2s;
+            position: relative;
+        }
+        .swatch:hover { transform: scale(1.15); }
+        .swatch.selected { border-color: #0645ad; border-width: 3px; }
+        .swatch-name { font-size: 13px; color: #54595d; margin-top: 6px; }
+
+        /* Nutrition chart */
+        .nutrition-visual {
+            display: flex;
+            gap: 8px;
+            align-items: flex-end;
+            margin: 20px 0;
+            height: 120px;
+            border-bottom: 2px solid #a2a9b1;
+            padding-bottom: 0;
+        }
+        .nutrition-bar-group { display: flex; flex-direction: column; align-items: center; flex: 1; }
+        .nutrition-bar { width: 100%; border-radius: 3px 3px 0 0; transition: height 0.8s ease; }
+        .nutrition-bar-label { font-size: 10px; color: #54595d; text-align: center; margin-top: 4px; }
+
+        /* Footnotes */
+        .footnote { font-size: 12px; color: #54595d; border-top: 1px solid #a2a9b1; margin-top: 30px; padding-top: 10px; }
+        sup a { color: #0645ad; text-decoration: none; font-size: 11px; }
+        sup a:hover { text-decoration: underline; }
+
+        /* Page indicator */
+        .page-indicator {
+            font-size: 13px;
+            color: #54595d;
+            margin-bottom: 10px;
         }
 
         @media (max-width: 850px) {
             .wiki-content { flex-direction: column-reverse; }
             .infobox { width: 100%; float: none; margin: 0 0 20px 0; }
             .main-container { padding: 20px; }
+            .gallery-grid { grid-template-columns: repeat(2, 1fr); }
+            .schedule-grid { grid-template-columns: repeat(4, 1fr); }
         }
     </style>
 </head>
 <body>
 
-    <div class="main-container">
-        <div class="wiki-nav">
-            <span>Матеріал з Вікіпедії — вільної енциклопедії.</span>
-        </div>
-        
-        <div class="wiki-header">
-            <h1>Джуніор (кіт)</h1>
-        </div>
+<div class="main-container">
+    <div class="wiki-nav">
+        <span>Матеріал з Вікіпедії — вільної енциклопедії.</span>
+    </div>
 
+    <div class="wiki-header">
+        <h1>Джуніор (кіт)</h1>
+    </div>
+
+    <!-- ============================= PAGE 1 ============================= -->
+    <div class="page-section active" id="page-1">
         <div class="wiki-content">
             <div class="wiki-text">
                 <p><strong>Джуніор</strong> — унікальний представник роду кішок (лат. <i>Felis catus</i>), що належить до породи <strong>Сфінкс</strong>. Відомий своєю екзотичною зовнішністю, абсолютною відсутністю шерсті та надзвичайною харизмою. На відміну від службових тварин, Джуніор принципово <strong>не знає жодної команди</strong>, оскільки вважає, що світ має обертатися навколо нього, а не навпаки.</p>
-                
+
                 <div class="toc">
                     <div class="toc-title">Зміст</div>
                     <ul>
@@ -297,12 +597,75 @@
                     </ul>
                 </div>
 
+                <!-- Did you know -->
+                <div class="did-you-know">
+                    <div class="did-you-know-title">💡 Чи знали ви?</div>
+                    <div class="dyk-text" id="dyk-text">Джуніор чує шурхіт пакету з кормом крізь три стіни.</div>
+                    <div class="dyk-nav">
+                        <button class="dyk-btn" onclick="prevDyk()">◄ Попередній</button>
+                        <button class="dyk-btn" onclick="nextDyk()">Наступний ►</button>
+                    </div>
+                </div>
+
                 <h2 id="appearance">Особливості зовнішності</h2>
                 <p>Джуніор є класичним представником безшерстих кішок. Його шкіра на дотик нагадує теплий оксамит або персик. Відсутність хутра робить його дуже приємним для обіймів, а також підкреслює його витончені м'язи та великі, «космічні» вуха. Колір шкіри має ніжний відтінок, що додає йому особливого шарму.</p>
 
+                <!-- Skin color demo -->
+                <div class="skin-color-demo">
+                    <strong>🎨 Відтінки шкіри сфінксів (натисніть на колір):</strong>
+                    <div class="color-swatches" id="color-swatches">
+                        <div>
+                            <div class="swatch selected" style="background:#7a716e;" data-name="Шоколадний (Джуніор)" onclick="selectSwatch(this)"></div>
+                        </div>
+                        <div>
+                            <div class="swatch" style="background:#c8a882;" data-name="Кремовий" onclick="selectSwatch(this)"></div>
+                        </div>
+                        <div>
+                            <div class="swatch" style="background:#5c3d2e;" data-name="Темно-коричневий" onclick="selectSwatch(this)"></div>
+                        </div>
+                        <div>
+                            <div class="swatch" style="background:#e8c9a0;" data-name="Персиковий" onclick="selectSwatch(this)"></div>
+                        </div>
+                        <div>
+                            <div class="swatch" style="background:#808080;" data-name="Сірий" onclick="selectSwatch(this)"></div>
+                        </div>
+                        <div>
+                            <div class="swatch" style="background:#f5f0eb;" data-name="Білий" onclick="selectSwatch(this)"></div>
+                        </div>
+                    </div>
+                    <div class="swatch-name">Обраний відтінок: <strong id="selected-swatch-name">Шоколадний (Джуніор)</strong> <span class="color-circle" id="swatch-preview-circle" style="background:#7a716e;"></span></div>
+                </div>
+
                 <h2 id="character">Характер та інтелект</h2>
                 <p>Джуніор характеризується як <strong>дуже прикольний та милий кіт</strong>. Його інтелект спрямований не на виконання людських наказів, а на отримання максимального комфорту. Він ігнорує команди «сидіти» чи «дай лапу», віддаючи перевагу щирому прояву любові та тепла до своїх господарів.</p>
-                
+
+                <!-- Personality bars -->
+                <div class="personality-section">
+                    <strong>📊 Риси характеру Джуніора:</strong>
+                    <div style="margin-top:12px;">
+                        <div class="trait-row">
+                            <div class="trait-name">Милота</div>
+                            <div class="trait-bar-wrap"><div class="trait-bar" style="width:97%;background:linear-gradient(90deg,#f48fb1,#e91e63);"></div></div>
+                        </div>
+                        <div class="trait-row">
+                            <div class="trait-name">Слухняність</div>
+                            <div class="trait-bar-wrap"><div class="trait-bar" style="width:3%;background:linear-gradient(90deg,#ef9a9a,#f44336);"></div></div>
+                        </div>
+                        <div class="trait-row">
+                            <div class="trait-name">Любов до корму</div>
+                            <div class="trait-bar-wrap"><div class="trait-bar" style="width:100%;background:linear-gradient(90deg,#a5d6a7,#4caf50);"></div></div>
+                        </div>
+                        <div class="trait-row">
+                            <div class="trait-name">Харизма</div>
+                            <div class="trait-bar-wrap"><div class="trait-bar" style="width:90%;background:linear-gradient(90deg,#90caf9,#2196f3);"></div></div>
+                        </div>
+                        <div class="trait-row">
+                            <div class="trait-name">Незалежність</div>
+                            <div class="trait-bar-wrap"><div class="trait-bar" style="width:85%;background:linear-gradient(90deg,#ce93d8,#9c27b0);"></div></div>
+                        </div>
+                    </div>
+                </div>
+
                 <div class="audio-section">
                     <div>
                         <strong>Голос Джуніора:</strong><br>
@@ -335,119 +698,6 @@
                         <source src="Song.mp3" type="audio/mpeg">
                     </audio>
                 </div>
-                <script>
-                    const canvas = document.getElementById('game-canvas');
-                    const ctx = canvas.getContext('2d');
-                    const startBtn = document.getElementById('start-btn');
-                    const gameUi = document.getElementById('game-ui');
-                    const scoreBoard = document.getElementById('score-board');
-                    const music = document.getElementById('game-music');
-
-                    let score = 0;
-                    let gameActive = false;
-                    let items = [];
-                    let junior = { x: 0, y: 0, w: 90, h: 90 };
-                    let animationId;
-
-                    const juniorImg = new Image();
-                    juniorImg.src = 'Джуніор.png';
-
-                    function initGame() {
-                        canvas.style.display = 'block';
-                        gameUi.style.display = 'block';
-                        canvas.width = canvas.parentElement.clientWidth;
-                        canvas.height = canvas.parentElement.clientHeight;
-                        junior.x = canvas.width / 2 - junior.w / 2;
-                        junior.y = canvas.height - junior.h - 10;
-                        score = 0;
-                        items = [];
-                        gameActive = true;
-                        music.currentTime = 0;
-                        music.play();
-                        requestAnimationFrame(gameLoop);
-                    }
-
-                    function spawnItem() {
-                        if (Math.random() < 0.05) {
-                            items.push({
-                                x: Math.random() * (canvas.width - 25),
-                                y: -30,
-                                speed: 3 + (score / 15),
-                                color: '#795548'
-                            });
-                        }
-                    }
-
-                    function update() {
-                        spawnItem();
-                        items.forEach((item, index) => {
-                            item.y += item.speed;
-                            
-                            if (item.y + 25 > junior.y && item.x + 25 > junior.x && item.x < junior.x + junior.w) {
-                                items.splice(index, 1);
-                                score++;
-                                scoreBoard.innerText = "З'їдено корму: " + score;
-                            }
-
-                            if (item.y > canvas.height) {
-                                gameOver();
-                            }
-                        });
-                    }
-
-                    function draw() {
-                        ctx.clearRect(0, 0, canvas.width, canvas.height);
-                        
-                        // Малюємо Джуніора
-                        ctx.drawImage(juniorImg, junior.x, junior.y, junior.w, junior.h);
-
-                        // Малюємо гранули корму
-                        items.forEach(item => {
-                            ctx.beginPath();
-                            ctx.arc(item.x + 12, item.y + 12, 12, 0, Math.PI * 2);
-                            ctx.fillStyle = '#8d6e63';
-                            ctx.fill();
-                            ctx.strokeStyle = '#5d4037';
-                            ctx.lineWidth = 2;
-                            ctx.stroke();
-                        });
-                    }
-
-                    function gameLoop() {
-                        if (!gameActive) return;
-                        update();
-                        draw();
-                        animationId = requestAnimationFrame(gameLoop);
-                    }
-
-                    function gameOver() {
-                        gameActive = false;
-                        cancelAnimationFrame(animationId);
-                        music.pause();
-                        alert('Гра завершена! Джуніор з’їв корму: ' + score + '\nТепер він ситий і щасливий!');
-                        canvas.style.display = 'none';
-                        gameUi.style.display = 'none';
-                        startBtn.style.display = 'block';
-                    }
-
-                    startBtn.addEventListener('click', () => {
-                        startBtn.style.display = 'none';
-                        initGame();
-                    });
-
-                    const handleMove = (e) => {
-                        if (!gameActive) return;
-                        let clientX = (e.touches && e.touches[0]) ? e.touches[0].clientX : e.clientX;
-                        let rect = canvas.getBoundingClientRect();
-                        let newX = clientX - rect.left - junior.w / 2;
-                        if (newX < 0) newX = 0;
-                        if (newX > canvas.width - junior.w) newX = canvas.width - junior.w;
-                        junior.x = newX;
-                    };
-
-                    canvas.parentElement.addEventListener('mousemove', handleMove);
-                    canvas.parentElement.addEventListener('touchmove', handleMove);
-                </script>
 
                 <h2 id="facts">Цікаві факти</h2>
                 <ul>
@@ -463,38 +713,1231 @@
                 <img src="Джуніор.png" alt="Фото кота Джуніора">
                 <p style="text-align: center; font-size: 0.8em; color: #555; margin-top: 0;">Джуніор — поціновувач корму та тепла</p>
                 <table>
-                    <tr>
-                        <th>Порода</th>
-                        <td>Сфінкс</td>
-                    </tr>
-                    <tr>
-                        <th>Вид</th>
-                        <td>Кіт свійський</td>
-                    </tr>
-                    <tr>
-                        <th>Вміння</th>
-                        <td>Не знає команд</td>
-                    </tr>
-                    <tr>
-                        <th>Характер</th>
-                        <td>Милий, прикольний</td>
-                    </tr>
-                    <tr>
-                        <th>Колір шкіри</th>
-                        <td>Шоколадний <span class="color-circle" title="Типовий колір сфінкса"></span></td>
-                    </tr>
-                    <tr>
-                        <th>Хобі</th>
-                        <td>Їсти корм</td>
-                    </tr>
-                    <tr>
-                        <th>Статус</th>
-                        <td><span class="status-badge">Головний у домі</span></td>
-                    </tr>
+                    <tr><th>Порода</th><td>Сфінкс</td></tr>
+                    <tr><th>Вид</th><td>Кіт свійський</td></tr>
+                    <tr><th>Вміння</th><td>Не знає команд</td></tr>
+                    <tr><th>Характер</th><td>Милий, прикольний</td></tr>
+                    <tr><th>Колір шкіри</th><td>Шоколадний <span class="color-circle" title="Типовий колір сфінкса"></span></td></tr>
+                    <tr><th>Хобі</th><td>Їсти корм</td></tr>
+                    <tr><th>Статус</th><td><span class="status-badge">Головний у домі</span></td></tr>
                 </table>
             </div>
         </div>
+    </div><!-- /page-1 -->
+
+    <!-- ============================= PAGE 2 ============================= -->
+    <div class="page-section" id="page-2">
+        <div class="wiki-content">
+            <div class="wiki-text">
+                <div class="page-indicator">Сторінка 2 з 10 — <strong>Порода: Сфінкс</strong></div>
+
+                <div class="toc">
+                    <div class="toc-title">Зміст</div>
+                    <ul>
+                        <li><a href="#">1 Історія породи</a></li>
+                        <li><a href="#">2 Фізичні характеристики</a></li>
+                        <li><a href="#">3 Порівняння з іншими породами</a></li>
+                        <li><a href="#">4 Вікторина про сфінксів</a></li>
+                    </ul>
+                </div>
+
+                <h2>Порода Сфінкс — повна інформація</h2>
+                <p>Канадський сфінкс — порода домашніх кішок, що характеризується відсутністю шерсті. Порода виникла завдяки природній генетичній мутації та подальшій селективній роботі заводчиків. Перший офіційно задокументований безшерстий кіт народився у Канаді в 1966 році.</p>
+
+                <!-- Did you know block -->
+                <div class="did-you-know">
+                    <div class="did-you-know-title">💡 Цікавий факт</div>
+                    <div class="dyk-text">Незважаючи на відсутність шерсті, сфінкси НЕ є гіпоалергенними — їхня шкіра виробляє той самий алерген Fel d1, що й інші кішки.</div>
+                </div>
+
+                <h2>Фізичні характеристики</h2>
+                <p>Тіло сфінкса вкрите тонким пушком, який практично не відчувається на дотик. Шкіра зморшкувата, особливо навколо плечей та між вухами. Великі вуха-локатори — одна з найвиразніших рис породи.</p>
+
+                <!-- Порівняльна таблиця -->
+                <h2>Порівняння з іншими породами</h2>
+                <table class="compare-table">
+                    <tr>
+                        <th>Характеристика</th>
+                        <th>Сфінкс (Джуніор)</th>
+                        <th>Мейн-кун</th>
+                        <th>Сіамський</th>
+                        <th>Перська</th>
+                    </tr>
+                    <tr>
+                        <td>Шерсть</td>
+                        <td>❌ Відсутня</td>
+                        <td>✅ Довга</td>
+                        <td>✅ Коротка</td>
+                        <td>✅ Дуже довга</td>
+                    </tr>
+                    <tr>
+                        <td>Товариськість</td>
+                        <td>⭐⭐⭐⭐⭐</td>
+                        <td>⭐⭐⭐⭐</td>
+                        <td>⭐⭐⭐⭐</td>
+                        <td>⭐⭐⭐</td>
+                    </tr>
+                    <tr>
+                        <td>Слухняність</td>
+                        <td>⭐ (навмисно)</td>
+                        <td>⭐⭐⭐</td>
+                        <td>⭐⭐⭐⭐</td>
+                        <td>⭐⭐⭐</td>
+                    </tr>
+                    <tr>
+                        <td>Любов до тепла</td>
+                        <td>🔥🔥🔥🔥🔥</td>
+                        <td>🔥🔥</td>
+                        <td>🔥🔥🔥</td>
+                        <td>🔥🔥🔥</td>
+                    </tr>
+                    <tr>
+                        <td>Догляд за шерстю</td>
+                        <td>Купання</td>
+                        <td>Розчісування</td>
+                        <td>Мінімальний</td>
+                        <td>Щоденне</td>
+                    </tr>
+                </table>
+
+                <h2>Вікторина про сфінксів</h2>
+                <div class="quiz-box" id="quiz2">
+                    <h3>Питання: Де вперше з'явилась порода Сфінкс?</h3>
+                    <button class="quiz-option" onclick="checkQuiz('quiz2', this, false)">🇬🇧 Великобританія</button>
+                    <button class="quiz-option" onclick="checkQuiz('quiz2', this, true)">🇨🇦 Канада</button>
+                    <button class="quiz-option" onclick="checkQuiz('quiz2', this, false)">🇫🇷 Франція</button>
+                    <button class="quiz-option" onclick="checkQuiz('quiz2', this, false)">🇪🇬 Єгипет</button>
+                    <div class="quiz-result" id="quiz2-result"></div>
+                </div>
+            </div>
+
+            <div class="infobox">
+                <div class="infobox-title">Сфінкс</div>
+                <div style="width:100%;height:180px;background:linear-gradient(135deg,#e3f2fd,#fff8e1);border-radius:2px;border:1px solid #c8ccd1;display:flex;align-items:center;justify-content:center;font-size:80px;margin-bottom:10px;">🐱</div>
+                <table>
+                    <tr><th>Походження</th><td>Канада, 1966</td></tr>
+                    <tr><th>Тип шерсті</th><td>Практично відсутня</td></tr>
+                    <tr><th>Вага</th><td>3.5 – 7 кг</td></tr>
+                    <tr><th>Тривалість життя</th><td>8 – 14 років</td></tr>
+                    <tr><th>Температура тіла</th><td>На 4°C вища за норму</td></tr>
+                    <tr><th>Особливість</th><td>«Живий радіатор»</td></tr>
+                </table>
+            </div>
+        </div>
+    </div><!-- /page-2 -->
+
+    <!-- ============================= PAGE 3 ============================= -->
+    <div class="page-section" id="page-3">
+        <div class="wiki-content">
+            <div class="wiki-text">
+                <div class="page-indicator">Сторінка 3 з 10 — <strong>Хронологія та розпорядок дня</strong></div>
+
+                <div class="toc">
+                    <div class="toc-title">Зміст</div>
+                    <ul>
+                        <li><a href="#">1 Хронологія важливих подій</a></li>
+                        <li><a href="#">2 Типовий розпорядок дня</a></li>
+                        <li><a href="#">3 Рівні настрою</a></li>
+                    </ul>
+                </div>
+
+                <h2>Хронологія важливих подій у житті Джуніора</h2>
+                <div class="timeline">
+                    <div class="timeline-event">
+                        <div class="timeline-year">День 1</div>
+                        <p>Народження Джуніора. Перший погляд на світ — та перший крик про корм.</p>
+                    </div>
+                    <div class="timeline-event">
+                        <div class="timeline-year">Тиждень 2</div>
+                        <p>Відкриття очей. Одразу зрозумів, що господарі існують для обслуговування.</p>
+                    </div>
+                    <div class="timeline-event">
+                        <div class="timeline-year">Місяць 1</div>
+                        <p>Перша спроба господарів навчити команді «сидіти». Результат: Джуніор просто пішов.</p>
+                    </div>
+                    <div class="timeline-event">
+                        <div class="timeline-year">Місяць 3</div>
+                        <p>Освоєння ковдри як основного місця проживання у холодний сезон.</p>
+                    </div>
+                    <div class="timeline-event">
+                        <div class="timeline-year">Місяць 6</div>
+                        <p>Перша перемога у домашньому чемпіонаті з «прошення корму поглядом».</p>
+                    </div>
+                    <div class="timeline-event">
+                        <div class="timeline-year">Рік 1</div>
+                        <p>Офіційне підтвердження статусу «Головного у домі». Усі господарі підписали угоду про годування за першою вимогою.</p>
+                    </div>
+                    <div class="timeline-event">
+                        <div class="timeline-year">Сьогодні</div>
+                        <p>Продовжує незалежне існування, демонструючи любов до всіх на своїх умовах.</p>
+                    </div>
+                </div>
+
+                <h2>Типовий розпорядок дня</h2>
+                <div class="schedule-grid">
+                    <div class="schedule-day">
+                        <div class="schedule-day-name">Пн</div>
+                        <div class="schedule-slot eat">🍽️ Сніданок</div>
+                        <div class="schedule-slot sleep">😴 Сон</div>
+                        <div class="schedule-slot eat">🍽️ Обід</div>
+                        <div class="schedule-slot cuddle">🤗 Обійми</div>
+                        <div class="schedule-slot sleep">😴 Сон</div>
+                        <div class="schedule-slot eat">🍽️ Вечеря</div>
+                    </div>
+                    <div class="schedule-day">
+                        <div class="schedule-day-name">Вт</div>
+                        <div class="schedule-slot eat">🍽️ Сніданок</div>
+                        <div class="schedule-slot play">🎮 Гра</div>
+                        <div class="schedule-slot sleep">😴 Сон</div>
+                        <div class="schedule-slot eat">🍽️ Обід</div>
+                        <div class="schedule-slot sleep">😴 Сон</div>
+                        <div class="schedule-slot eat">🍽️ Вечеря</div>
+                    </div>
+                    <div class="schedule-day">
+                        <div class="schedule-day-name">Ср</div>
+                        <div class="schedule-slot eat">🍽️ Сніданок</div>
+                        <div class="schedule-slot sleep">😴 Сон</div>
+                        <div class="schedule-slot cuddle">🤗 Обійми</div>
+                        <div class="schedule-slot sleep">😴 Сон</div>
+                        <div class="schedule-slot eat">🍽️ Вечеря</div>
+                        <div class="schedule-slot sleep">😴 Сон</div>
+                    </div>
+                    <div class="schedule-day">
+                        <div class="schedule-day-name">Чт</div>
+                        <div class="schedule-slot eat">🍽️ Сніданок</div>
+                        <div class="schedule-slot play">🎮 Гра</div>
+                        <div class="schedule-slot eat">🍽️ Обід</div>
+                        <div class="schedule-slot sleep">😴 Сон</div>
+                        <div class="schedule-slot cuddle">🤗 Обійми</div>
+                        <div class="schedule-slot eat">🍽️ Вечеря</div>
+                    </div>
+                    <div class="schedule-day">
+                        <div class="schedule-day-name">Пт</div>
+                        <div class="schedule-slot eat">🍽️ Сніданок</div>
+                        <div class="schedule-slot sleep">😴 Сон</div>
+                        <div class="schedule-slot sleep">😴 Сон</div>
+                        <div class="schedule-slot eat">🍽️ Обід</div>
+                        <div class="schedule-slot play">🎮 Гра</div>
+                        <div class="schedule-slot eat">🍽️ Вечеря</div>
+                    </div>
+                    <div class="schedule-day">
+                        <div class="schedule-day-name">Сб</div>
+                        <div class="schedule-slot eat">🍽️ Сніданок</div>
+                        <div class="schedule-slot cuddle">🤗 Обійми</div>
+                        <div class="schedule-slot sleep">😴 Сон</div>
+                        <div class="schedule-slot eat">🍽️ Обід</div>
+                        <div class="schedule-slot play">🎮 Гра</div>
+                        <div class="schedule-slot eat">🍽️ Вечеря</div>
+                    </div>
+                    <div class="schedule-day">
+                        <div class="schedule-day-name">Нд</div>
+                        <div class="schedule-slot eat">🍽️ Сніданок</div>
+                        <div class="schedule-slot sleep">😴 Сон</div>
+                        <div class="schedule-slot sleep">😴 Сон</div>
+                        <div class="schedule-slot cuddle">🤗 Обійми</div>
+                        <div class="schedule-slot eat">🍽️ Вечеря</div>
+                        <div class="schedule-slot sleep">😴 Сон</div>
+                    </div>
+                </div>
+                <p style="font-size:12px;color:#54595d;">Легенда: 🍽️ Їжа | 😴 Сон | 🎮 Гра | 🤗 Обійми</p>
+
+                <h2>Рівні настрою Джуніора</h2>
+                <div class="mood-meter">
+                    <strong>Поточний рівень задоволення (натисніть кнопку!):</strong>
+                    <div id="mood-display" style="font-size:13px;color:#54595d;margin:8px 0;">Натисніть кнопку, щоб дізнатися настрій</div>
+                    <div class="mood-bar-wrap"><div class="mood-bar" id="mood-bar" style="width:0%;background:linear-gradient(90deg,#ffcc02,#ff9800);"></div></div>
+                    <div class="mood-label"><span>😾</span><span>😸</span></div>
+                    <button onclick="checkMood()" style="margin-top:12px;padding:8px 20px;background:#0645ad;color:white;border:none;border-radius:3px;cursor:pointer;font-size:14px;">🐾 Перевірити настрій</button>
+                </div>
+            </div>
+
+            <div class="infobox">
+                <div class="infobox-title">Розпорядок дня</div>
+                <table>
+                    <tr><th>Сон</th><td>16–18 год/день</td></tr>
+                    <tr><th>Їжа</th><td>3–4 рази/день</td></tr>
+                    <tr><th>Гра</th><td>1–2 год/день</td></tr>
+                    <tr><th>Обійми</th><td>За бажанням</td></tr>
+                    <tr><th>Ігнорування команд</th><td>24/7</td></tr>
+                </table>
+            </div>
+        </div>
+    </div><!-- /page-3 -->
+
+    <!-- ============================= PAGE 4 ============================= -->
+    <div class="page-section" id="page-4">
+        <div class="wiki-content">
+            <div class="wiki-text">
+                <div class="page-indicator">Сторінка 4 з 10 — <strong>Харчування</strong></div>
+
+                <div class="toc">
+                    <div class="toc-title">Зміст</div>
+                    <ul>
+                        <li><a href="#">1 Улюблені страви</a></li>
+                        <li><a href="#">2 Харчова піраміда</a></li>
+                        <li><a href="#">3 Реакція на корм (інтерактивно)</a></li>
+                    </ul>
+                </div>
+
+                <h2>Харчова поведінка Джуніора</h2>
+                <p>Вчені (господарі) провели ретельні спостереження за харчовою поведінкою Джуніора протягом тривалого часу. Результати виявилися невтішними для гаманця, але надзвичайно корисними для науки.</p>
+
+                <!-- Nutrition visual -->
+                <h2>Харчова піраміда Джуніора</h2>
+                <div style="background:#f8f9fa;border:1px solid #a2a9b1;padding:20px;border-radius:4px;margin:20px 0;">
+                    <div style="text-align:center;margin-bottom:15px;font-size:13px;color:#54595d;">Натисніть на стовпчик для деталей</div>
+                    <div class="nutrition-visual" id="nutrition-chart">
+                        <div class="nutrition-bar-group" onclick="showNutritionInfo('Сухий корм','Основа раціону. З'їдається з неймовірною швидкістю. Чутний за 3 стіни.')">
+                            <div class="nutrition-bar" style="height:90px;background:#8d6e63;"></div>
+                            <div class="nutrition-bar-label">Сухий<br>корм<br>90%</div>
+                        </div>
+                        <div class="nutrition-bar-group" onclick="showNutritionInfo('Вологий корм','Святковий варіант. Отримується по великих святах та при особливо гарній поведінці.')">
+                            <div class="nutrition-bar" style="height:60px;background:#a1887f;"></div>
+                            <div class="nutrition-bar-label">Вологий<br>корм<br>60%</div>
+                        </div>
+                        <div class="nutrition-bar-group" onclick="showNutritionInfo('Ласощі','Використовуються господарями як інструмент переговорів. Ефективність 0%.')">
+                            <div class="nutrition-bar" style="height:40px;background:#ff9800;"></div>
+                            <div class="nutrition-bar-label">Ласощі<br>40%</div>
+                        </div>
+                        <div class="nutrition-bar-group" onclick="showNutritionInfo('Вода','Споживається, але лише якщо миска абсолютно чиста та наповнена свіжою водою.')">
+                            <div class="nutrition-bar" style="height:70px;background:#4fc3f7;"></div>
+                            <div class="nutrition-bar-label">Вода<br>70%</div>
+                        </div>
+                        <div class="nutrition-bar-group" onclick="showNutritionInfo('Людська їжа','Пробує з тарілки господаря, але зазвичай ігнорує. Принцип: «що твоє — те моє».')">
+                            <div class="nutrition-bar" style="height:20px;background:#ef9a9a;"></div>
+                            <div class="nutrition-bar-label">Людська<br>їжа<br>20%</div>
+                        </div>
+                    </div>
+                    <div id="nutrition-info" style="margin-top:12px;padding:10px;background:#fff;border:1px solid #e0e0e0;border-radius:3px;font-size:14px;display:none;"></div>
+                </div>
+
+                <!-- Accordion FAQ -->
+                <h2>Часті запитання про харчування</h2>
+                <div class="accordion-item">
+                    <div class="accordion-header" onclick="toggleAccordion(this)">Скільки разів на день годувати сфінкса? <span class="accordion-arrow">▶</span></div>
+                    <div class="accordion-body">Сфінкси, як і Джуніор, зазвичай потребують 3–4 прийоми їжі на день. Вони мають підвищений метаболізм через відсутність шерсті та витрати на підтримку температури тіла.</div>
+                </div>
+                <div class="accordion-item">
+                    <div class="accordion-header" onclick="toggleAccordion(this)">Чи можна давати сфінксу людську їжу? <span class="accordion-arrow">▶</span></div>
+                    <div class="accordion-body">Категорично не рекомендується давати шоколад, цибулю, часник, виноград та родзинки. Джуніор, попри всю свою незалежність, все одно слідкуватиме, щоб йому нічого не перепало з вашої тарілки.</div>
+                </div>
+                <div class="accordion-item">
+                    <div class="accordion-header" onclick="toggleAccordion(this)">Що робити якщо кіт відмовляється від корму? <span class="accordion-arrow">▶</span></div>
+                    <div class="accordion-body">З Джуніором такого ніколи не траплялось. Але теоретично: спробуйте змінити марку корму або підігріти вологий корм до кімнатної температури. Зазвичай 15 хвилин голоду вирішують проблему.</div>
+                </div>
+
+                <h2>Реакція Джуніора на звук корму</h2>
+                <div style="background:#f8f9fa;border:1px solid #a2a9b1;padding:20px;border-radius:4px;margin:20px 0;text-align:center;">
+                    <p style="font-size:14px;color:#54595d;margin-top:0;">Натисніть кнопку, щоб відтворити звук корму та побачити реакцію Джуніора</p>
+                    <div id="junior-reaction" style="font-size:60px;margin:15px 0;">😴</div>
+                    <div id="reaction-text" style="font-size:14px;color:#54595d;min-height:20px;"></div>
+                    <button onclick="playFoodReaction()" style="padding:10px 25px;background:#795548;color:white;border:none;border-radius:3px;cursor:pointer;font-size:15px;margin-top:10px;">🍽️ Відкрити пакет з кормом</button>
+                </div>
+            </div>
+
+            <div class="infobox">
+                <div class="infobox-title">Харчування</div>
+                <table>
+                    <tr><th>Улюблений корм</th><td>Будь-який та у великих кількостях</td></tr>
+                    <tr><th>Порції на день</th><td>3–4</td></tr>
+                    <tr><th>Час реакції на корм</th><td>0.3 секунди</td></tr>
+                    <tr><th>Дальність чуття корму</th><td>~3 кімнати</td></tr>
+                    <tr><th>Небезпечні продукти</th><td>Шоколад, цибуля</td></tr>
+                </table>
+            </div>
+        </div>
+    </div><!-- /page-4 -->
+
+    <!-- ============================= PAGE 5 ============================= -->
+    <div class="page-section" id="page-5">
+        <div class="wiki-content">
+            <div class="wiki-text">
+                <div class="page-indicator">Сторінка 5 з 10 — <strong>Догляд та гігієна</strong></div>
+
+                <div class="toc">
+                    <div class="toc-title">Зміст</div>
+                    <ul>
+                        <li><a href="#">1 Купання</a></li>
+                        <li><a href="#">2 Чистка вух</a></li>
+                        <li><a href="#">3 Нігті</a></li>
+                        <li><a href="#">4 Вікторина по догляду</a></li>
+                    </ul>
+                </div>
+
+                <h2>Догляд за сфінксом</h2>
+                <p>Відсутність шерсті не означає відсутність догляду — навпаки, сфінкси потребують більш ретельного та регулярного догляду, ніж більшість кошачих порід. Джуніор ставиться до всіх гігієнічних процедур... по-різному.</p>
+
+                <!-- Cards flippable -->
+                <h2>Гігієнічні процедури (натисніть на картку)</h2>
+                <div class="fact-cards">
+                    <div class="fact-card" onclick="flipCard(this)">
+                        <div class="card-front">🛁 Купання</div>
+                        <div class="card-back">Сфінксів необхідно купати раз на 1–2 тижні. Без шерсті жирові виділення накопичуються на шкірі. Джуніор ставиться до ванни... стоїчно.</div>
+                        <div class="fact-card-hint">Натисніть для деталей</div>
+                    </div>
+                    <div class="fact-card" onclick="flipCard(this)">
+                        <div class="card-front">👂 Вуха</div>
+                        <div class="card-back">Великі вуха сфінкса накопичують бруд. Чистити раз на тиждень ватним тампоном. Джуніор вважає цю процедуру особистим образою.</div>
+                        <div class="fact-card-hint">Натисніть для деталей</div>
+                    </div>
+                    <div class="fact-card" onclick="flipCard(this)">
+                        <div class="card-front">💅 Нігті</div>
+                        <div class="card-back">Нігті потрібно підстригати кожні 2–3 тижні. Без цього вони стають небезпечними. Джуніор надає перевагу гострим нігтям — «для самооборони».</div>
+                        <div class="fact-card-hint">Натисніть для деталей</div>
+                    </div>
+                    <div class="fact-card" onclick="flipCard(this)">
+                        <div class="card-front">🦷 Зуби</div>
+                        <div class="card-back">Чистка зубів 2–3 рази на тиждень. Сфінкси схильні до зубного каменю. Джуніор відкриває рот тільки для корму та протесту.</div>
+                        <div class="fact-card-hint">Натисніть для деталей</div>
+                    </div>
+                    <div class="fact-card" onclick="flipCard(this)">
+                        <div class="card-front">👁️ Очі</div>
+                        <div class="card-back">Великі очі без захисту вій потребують щоденного протирання. Лосьон без спирту. Джуніор дивиться осудливо під час процедури.</div>
+                        <div class="fact-card-hint">Натисніть для деталей</div>
+                    </div>
+                    <div class="fact-card" onclick="flipCard(this)">
+                        <div class="card-front">☀️ Сонце</div>
+                        <div class="card-back">Шкіра сфінкса може засмагати і навіть обгорати! При виході на сонце більше 30 хвилин потрібен захист. Джуніор — перший кіт з потенційним засмаганням.</div>
+                        <div class="fact-card-hint">Натисніть для деталей</div>
+                    </div>
+                </div>
+
+                <h2>Вікторина: Чи знаєш ти про догляд за сфінксом?</h2>
+                <div class="quiz-box" id="quiz5">
+                    <h3>Як часто потрібно купати сфінкса?</h3>
+                    <button class="quiz-option" onclick="checkQuiz('quiz5', this, false)">🗓️ Раз на місяць</button>
+                    <button class="quiz-option" onclick="checkQuiz('quiz5', this, true)">🗓️ Раз на 1–2 тижні</button>
+                    <button class="quiz-option" onclick="checkQuiz('quiz5', this, false)">🗓️ Кожен день</button>
+                    <button class="quiz-option" onclick="checkQuiz('quiz5', this, false)">🗓️ Ніколи, вони самі миються</button>
+                    <div class="quiz-result" id="quiz5-result"></div>
+                </div>
+
+                <h2>Температурний комфорт</h2>
+                <p>Оскільки у сфінксів немає шерсті, вони значно чутливіші до температури навколишнього середовища. Комфортна температура для Джуніора:</p>
+                <div class="mood-meter">
+                    <div style="display:flex;justify-content:space-between;font-size:13px;margin-bottom:8px;">
+                        <span>❄️ 15°C — Дуже холодно</span>
+                        <span>🌡️ 25°C — Ідеально</span>
+                        <span>🔥 35°C — Задуха</span>
+                    </div>
+                    <div class="mood-bar-wrap" style="height:24px;">
+                        <div class="mood-bar" style="width:50%;background:linear-gradient(90deg,#64b5f6,#4caf50,#ff9800);height:100%;"></div>
+                    </div>
+                    <div style="font-size:12px;color:#54595d;margin-top:5px;">Оптимальний діапазон: 20–28°C (виділено зеленим)</div>
+                </div>
+            </div>
+
+            <div class="infobox">
+                <div class="infobox-title">Догляд</div>
+                <table>
+                    <tr><th>Купання</th><td>Раз на 1–2 тижні</td></tr>
+                    <tr><th>Вуха</th><td>Раз на тиждень</td></tr>
+                    <tr><th>Нігті</th><td>Раз на 2–3 тижні</td></tr>
+                    <tr><th>Зуби</th><td>2–3 рази/тиждень</td></tr>
+                    <tr><th>Одяг взимку</th><td>Рекомендується</td></tr>
+                </table>
+            </div>
+        </div>
+    </div><!-- /page-5 -->
+
+    <!-- ============================= PAGE 6 ============================= -->
+    <div class="page-section" id="page-6">
+        <div class="wiki-content">
+            <div class="wiki-text">
+                <div class="page-indicator">Сторінка 6 з 10 — <strong>Здоров'я та медицина</strong></div>
+
+                <div class="toc">
+                    <div class="toc-title">Зміст</div>
+                    <ul>
+                        <li><a href="#">1 Типові захворювання</a></li>
+                        <li><a href="#">2 Щеплення та профілактика</a></li>
+                        <li><a href="#">3 Медичний калькулятор</a></li>
+                    </ul>
+                </div>
+
+                <h2>Здоров'я сфінкса</h2>
+                <p>Попри витончений вигляд, сфінкси є загалом здоровими котами при правильному догляді. Однак є ряд захворювань, до яких ця порода схильна більше за інших.</p>
+
+                <!-- Health accordion -->
+                <h2>Типові захворювання (розкрийте для деталей)</h2>
+                <div class="accordion-item">
+                    <div class="accordion-header" onclick="toggleAccordion(this)">❤️ Гіпертрофічна кардіоміопатія (ГКМ) <span class="accordion-arrow">▶</span></div>
+                    <div class="accordion-body">Найпоширеніше серцеве захворювання у котів. Сфінкси мають генетичну схильність. Рекомендується ехокардіограма раз на рік після досягнення 2 років. Джуніор щороку проходить перевірку і завжди отримує «відмінно».</div>
+                </div>
+                <div class="accordion-item">
+                    <div class="accordion-header" onclick="toggleAccordion(this)">🦷 Зубний камінь <span class="accordion-arrow">▶</span></div>
+                    <div class="accordion-body">Сфінкси схильні до утворення зубного каменю. Регулярна чистка зубів та спеціальні жувальні ласощі допомагають знизити ризик. Джуніор відкриває рот для перевірки тільки якщо бачить корм.</div>
+                </div>
+                <div class="accordion-item">
+                    <div class="accordion-header" onclick="toggleAccordion(this)">🌡️ Переохолодження <span class="accordion-arrow">▶</span></div>
+                    <div class="accordion-body">Без шерсті сфінкси можуть переохолоджуватись. Необхідно забезпечити тепле місце для сну та одяг у холодну погоду. У Джуніора є особиста колекція светрів, яку він ігнорує.</div>
+                </div>
+                <div class="accordion-item">
+                    <div class="accordion-header" onclick="toggleAccordion(this)">🍽️ Проблеми з ШКТ <span class="accordion-arrow">▶</span></div>
+                    <div class="accordion-body">Сфінкси мають підвищений метаболізм і чутливий шлунок. Різка зміна корму може викликати розлад. Джуніор вважає будь-які проблеми з їжею особистою трагедією.</div>
+                </div>
+
+                <h2>Калькулятор віку кота</h2>
+                <div style="background:#f8f9fa;border:1px solid #a2a9b1;padding:20px;border-radius:4px;margin:20px 0;">
+                    <p style="font-size:14px;color:#54595d;margin-top:0;">Переведіть вік кота у «людські роки»:</p>
+                    <div style="display:flex;align-items:center;gap:12px;flex-wrap:wrap;">
+                        <label style="font-size:14px;">Вік кота:</label>
+                        <input type="number" id="cat-age-input" min="0" max="25" value="1" style="width:70px;padding:6px;border:1px solid #a2a9b1;border-radius:3px;font-size:14px;">
+                        <span style="font-size:14px;">років</span>
+                        <button onclick="calcCatAge()" style="padding:7px 18px;background:#0645ad;color:white;border:none;border-radius:3px;cursor:pointer;font-size:14px;">Порахувати</button>
+                    </div>
+                    <div id="cat-age-result" style="margin-top:12px;font-size:15px;font-weight:bold;color:#0645ad;"></div>
+                </div>
+
+                <h2>Щеплення</h2>
+                <table class="compare-table">
+                    <tr><th>Вакцина</th><th>Вік першого щеплення</th><th>Повторення</th></tr>
+                    <tr><td>Котячий панлейкопеніт</td><td>8–9 тижнів</td><td>Щорічно</td></tr>
+                    <tr><td>Герпесвірус / Каліцивірус</td><td>8–9 тижнів</td><td>Щорічно</td></tr>
+                    <tr><td>Сказ</td><td>12–16 тижнів</td><td>Щорічно / кожні 3 роки</td></tr>
+                    <tr><td>Хламідіоз</td><td>9 тижнів</td><td>Щорічно (за ризиком)</td></tr>
+                </table>
+            </div>
+
+            <div class="infobox">
+                <div class="infobox-title">Здоров'я</div>
+                <table>
+                    <tr><th>Тривалість життя</th><td>8–14 років</td></tr>
+                    <tr><th>Ризик ГКМ</th><td>⚠️ Підвищений</td></tr>
+                    <tr><th>Ветеринар</th><td>Раз на рік</td></tr>
+                    <tr><th>Щеплення</th><td>Щорічно</td></tr>
+                    <tr><th>Стерилізація</th><td>Рекомендується</td></tr>
+                </table>
+            </div>
+        </div>
+    </div><!-- /page-6 -->
+
+    <!-- ============================= PAGE 7 ============================= -->
+    <div class="page-section" id="page-7">
+        <div class="wiki-content">
+            <div class="wiki-text">
+                <div class="page-indicator">Сторінка 7 з 10 — <strong>Соціальна поведінка та спілкування</strong></div>
+
+                <div class="toc">
+                    <div class="toc-title">Зміст</div>
+                    <ul>
+                        <li><a href="#">1 Стосунки з людьми</a></li>
+                        <li><a href="#">2 «Мова» Джуніора</a></li>
+                        <li><a href="#">3 Переводчик котячої мови</a></li>
+                    </ul>
+                </div>
+
+                <h2>Соціальна поведінка</h2>
+                <p>Сфінкси — надзвичайно соціальні кішки. На відміну від деяких порід, які люблять усамітнення, Джуніор завжди хоче бути там, де люди. Але тільки на своїх умовах.</p>
+
+                <div class="did-you-know">
+                    <div class="did-you-know-title">💡 Наукове спостереження</div>
+                    <div class="dyk-text">Сфінкси дотримуються принципу «частина зграї»: вони наслідують поведінку людей у домі, ходять слідом та беруть участь у всіх справах. Джуніор особисто перевіряє кожен пакет із покупками.</div>
+                </div>
+
+                <h2>«Мова» Джуніора — словник</h2>
+                <table class="compare-table">
+                    <tr><th>Дія</th><th>Переклад</th></tr>
+                    <tr><td>Сильне муркотіння + масаж лапами</td><td>«Я дуже задоволений. Не рухайся наступні 3 години.»</td></tr>
+                    <tr><td>Повільне кліпання очима</td><td>«Я тебе люблю» (котячий поцілунок)</td></tr>
+                    <tr><td>Голос у 5 ранку</td><td>«Пора їсти. Немає, те що ти думаєш що «рано» — не рано.»</td></tr>
+                    <tr><td>Хвіст трубою при зустрічі</td><td>«Привіт! Радий тебе бачити. Корм готовий?»</td></tr>
+                    <tr><td>Тупий погляд</td><td>«Я тебе чую, але вирішую ігнорувати.»</td></tr>
+                    <tr><td>Притискання до ноги</td><td>«Холодно. Ти — мій обігрівач.»</td></tr>
+                    <tr><td>Принесення іграшки</td><td>«Грай зі мною. Зараз. Негайно.»</td></tr>
+                    <tr><td>Сидіння на ноутбуці</td><td>«Твоя робота менш важлива за мою увагу.»</td></tr>
+                </table>
+
+                <h2>🐾 Перекладач котячої мови</h2>
+                <div style="background:#f8f9fa;border:1px solid #a2a9b1;padding:20px;border-radius:4px;margin:20px 0;">
+                    <p style="font-size:14px;color:#54595d;margin-top:0;">Опишіть, що робить ваш кіт, і Джуніор «перекладе»:</p>
+                    <select id="cat-action-select" style="width:100%;padding:8px;border:1px solid #a2a9b1;border-radius:3px;font-size:14px;margin-bottom:10px;">
+                        <option value="">— Оберіть дію кота —</option>
+                        <option value="purr">Муркотить і топче лапками</option>
+                        <option value="blink">Повільно кліпає очима</option>
+                        <option value="morning">Будить вас о 5 ранку</option>
+                        <option value="tail">Ходить з хвостом трубою</option>
+                        <option value="stare">Дивиться порожнім поглядом</option>
+                        <option value="rubs">Треться об ноги</option>
+                        <option value="toy">Приносить іграшку</option>
+                        <option value="laptop">Сідає на ноутбук</option>
+                        <option value="ignore">Повністю ігнорує вас</option>
+                    </select>
+                    <button onclick="translateCat()" style="padding:8px 20px;background:#795548;color:white;border:none;border-radius:3px;cursor:pointer;font-size:14px;">🐱 Перекласти</button>
+                    <div id="cat-translation" style="margin-top:12px;padding:10px;background:#fff3e0;border:1px solid #ffe0b2;border-radius:3px;font-size:15px;display:none;font-style:italic;"></div>
+                </div>
+
+                <!-- Emoji mood poll -->
+                <h2>Опитування: Як ви ставитесь до котів-сфінксів?</h2>
+                <div style="background:#f8f9fa;border:1px solid #a2a9b1;padding:20px;border-radius:4px;margin:20px 0;">
+                    <p style="font-size:14px;color:#54595d;margin-top:0;">Натисніть на своє ставлення:</p>
+                    <div style="display:flex;gap:15px;flex-wrap:wrap;justify-content:center;" id="poll-buttons">
+                        <button onclick="vote('love')" style="background:none;border:1px solid #a2a9b1;border-radius:4px;padding:12px 20px;cursor:pointer;font-size:22px;flex:1;min-width:80px;" id="vote-love">😍<br><span style="font-size:12px;">Обожнюю</span></button>
+                        <button onclick="vote('cute')" style="background:none;border:1px solid #a2a9b1;border-radius:4px;padding:12px 20px;cursor:pointer;font-size:22px;flex:1;min-width:80px;" id="vote-cute">🥰<br><span style="font-size:12px;">Мило</span></button>
+                        <button onclick="vote('weird')" style="background:none;border:1px solid #a2a9b1;border-radius:4px;padding:12px 20px;cursor:pointer;font-size:22px;flex:1;min-width:80px;" id="vote-weird">🤔<br><span style="font-size:12px;">Незвично</span></button>
+                        <button onclick="vote('scared')" style="background:none;border:1px solid #a2a9b1;border-radius:4px;padding:12px 20px;cursor:pointer;font-size:22px;flex:1;min-width:80px;" id="vote-scared">😅<br><span style="font-size:12px;">Трохи страшно</span></button>
+                    </div>
+                    <div id="poll-result" style="margin-top:12px;font-size:14px;text-align:center;color:#0645ad;"></div>
+                </div>
+            </div>
+
+            <div class="infobox">
+                <div class="infobox-title">Спілкування</div>
+                <table>
+                    <tr><th>Голосовість</th><td>Середня-висока</td></tr>
+                    <tr><th>Товариськість</th><td>⭐⭐⭐⭐⭐</td></tr>
+                    <tr><th>З дітьми</th><td>Добре (якщо годують)</td></tr>
+                    <tr><th>З іншими котами</th><td>Добре</td></tr>
+                    <tr><th>З собаками</th><td>Задовільно</td></tr>
+                </table>
+            </div>
+        </div>
+    </div><!-- /page-7 -->
+
+    <!-- ============================= PAGE 8 ============================= -->
+    <div class="page-section" id="page-8">
+        <div class="wiki-content">
+            <div class="wiki-text">
+                <div class="page-indicator">Сторінка 8 з 10 — <strong>Фотогалерея та медіа</strong></div>
+
+                <h2>Фотогалерея Джуніора</h2>
+                <p>Нижче представлені зображення Джуніора в різних настроях та ситуаціях. Усі фото — офіційні, затверджені особисто Джуніором.</p>
+
+                <div class="gallery-grid">
+                    <div class="gallery-item" onclick="openGalleryItem('Джуніор у режимі очікування корму')">
+                        <div class="gallery-item-inner">😼</div>
+                        <div class="gallery-caption">Режим очікування корму</div>
+                    </div>
+                    <div class="gallery-item" onclick="openGalleryItem('Джуніор під ковдрою (зимовий режим)')">
+                        <div class="gallery-item-inner">🛌</div>
+                        <div class="gallery-caption">Зимовий режим (під ковдрою)</div>
+                    </div>
+                    <div class="gallery-item" onclick="openGalleryItem('Джуніор ігнорує команду')">
+                        <div class="gallery-item-inner">😑</div>
+                        <div class="gallery-caption">Ігнорує команду «сидіти»</div>
+                    </div>
+                    <div class="gallery-item" onclick="openGalleryItem('Джуніор на сонечку')">
+                        <div class="gallery-item-inner">😺</div>
+                        <div class="gallery-caption">На сонячному підвіконні</div>
+                    </div>
+                    <div class="gallery-item" onclick="openGalleryItem('Джуніор вимагає обіймів')">
+                        <div class="gallery-item-inner">🤗</div>
+                        <div class="gallery-caption">Вимагає уваги</div>
+                    </div>
+                    <div class="gallery-item" onclick="openGalleryItem('Джуніор після ванни')">
+                        <div class="gallery-item-inner">🚿</div>
+                        <div class="gallery-caption">Після купання (незадоволений)</div>
+                    </div>
+                    <div class="gallery-item" onclick="openGalleryItem('Джуніор грає')">
+                        <div class="gallery-item-inner">🎯</div>
+                        <div class="gallery-caption">Полює на іграшкову мишу</div>
+                    </div>
+                    <div class="gallery-item" onclick="openGalleryItem('Джуніор в одязі')">
+                        <div class="gallery-item-inner">👕</div>
+                        <div class="gallery-caption">В зимовому светрі</div>
+                    </div>
+                    <div class="gallery-item" onclick="openGalleryItem('Джуніор їсть')">
+                        <div class="gallery-item-inner">🍽️</div>
+                        <div class="gallery-caption">За улюбленим заняттям</div>
+                    </div>
+                </div>
+
+                <div id="gallery-modal" style="display:none;background:#f0f3f8;border:1px solid #a2a9b1;border-radius:4px;padding:20px;margin:15px 0;text-align:center;">
+                    <div id="gallery-modal-text" style="font-size:18px;margin-bottom:10px;"></div>
+                    <button onclick="document.getElementById('gallery-modal').style.display='none'" style="padding:6px 18px;background:#0645ad;color:white;border:none;border-radius:3px;cursor:pointer;font-size:14px;">Закрити</button>
+                </div>
+
+                <h2>Відомі вислови про Джуніора</h2>
+                <div style="margin:20px 0;">
+                    <blockquote style="border-left:4px solid #a2a9b1;margin:0 0 15px;padding:10px 20px;background:#f8f9fa;font-style:italic;color:#54595d;">
+                        «Він дивиться на мене так, ніби я йому щось винен. Мабуть, корм.»
+                        <footer style="font-style:normal;font-weight:bold;margin-top:5px;font-size:13px;">— Господар Джуніора</footer>
+                    </blockquote>
+                    <blockquote style="border-left:4px solid #a2a9b1;margin:0 0 15px;padding:10px 20px;background:#f8f9fa;font-style:italic;color:#54595d;">
+                        «Коли він спить, можна думати, що це маленьке інопланетне створіння. Але потім відкриває рот і кричить про корм.»
+                        <footer style="font-style:normal;font-weight:bold;margin-top:5px;font-size:13px;">— Ветеринар</footer>
+                    </blockquote>
+                    <blockquote style="border-left:4px solid #a2a9b1;margin:0 0 15px;padding:10px 20px;background:#f8f9fa;font-style:italic;color:#54595d;">
+                        «Найтепліша "грілка" яку я коли-небудь мала. І найгучніша.»
+                        <footer style="font-style:normal;font-weight:bold;margin-top:5px;font-size:13px;">— Господиня Джуніора</footer>
+                    </blockquote>
+                </div>
+
+                <h2>Генератор «цитат» від Джуніора</h2>
+                <div style="background:#f8f9fa;border:1px solid #a2a9b1;padding:20px;border-radius:4px;margin:20px 0;text-align:center;">
+                    <div id="junior-quote" style="font-size:18px;font-style:italic;color:#54595d;min-height:50px;padding:15px;background:#fff;border:1px solid #e0e0e0;border-radius:3px;margin-bottom:15px;">Натисніть кнопку щоб почути Джуніора</div>
+                    <button onclick="generateQuote()" style="padding:10px 25px;background:#795548;color:white;border:none;border-radius:3px;cursor:pointer;font-size:15px;">😸 Що думає Джуніор?</button>
+                </div>
+            </div>
+
+            <div class="infobox">
+                <div class="infobox-title">Медіа</div>
+                <img src="Джуніор.png" alt="Фото кота Джуніора">
+                <table>
+                    <tr><th>Фото в архіві</th><td>9999+</td></tr>
+                    <tr><th>Улюблений ракурс</th><td>З кормом у кадрі</td></tr>
+                    <tr><th>Реакція на камеру</th><td>Позує чи ігнорує</td></tr>
+                </table>
+            </div>
+        </div>
+    </div><!-- /page-8 -->
+
+    <!-- ============================= PAGE 9 ============================= -->
+    <div class="page-section" id="page-9">
+        <div class="wiki-content">
+            <div class="wiki-text">
+                <div class="page-indicator">Сторінка 9 з 10 — <strong>Наукові дані та статистика</strong></div>
+
+                <div class="toc">
+                    <div class="toc-title">Зміст</div>
+                    <ul>
+                        <li><a href="#">1 Анатомія сфінкса</a></li>
+                        <li><a href="#">2 Статистика</a></li>
+                        <li><a href="#">3 Генетика</a></li>
+                    </ul>
+                </div>
+
+                <h2>Анатомія сфінкса</h2>
+                <p>Анатомія Джуніора відповідає стандарту породи Канадський сфінкс. Попри позірну «голість», шкіра вкрита мікроскопічним пушком, який не відчувається на дотик.</p>
+
+                <!-- Interactive anatomy -->
+                <div style="background:#f8f9fa;border:1px solid #a2a9b1;padding:20px;border-radius:4px;margin:20px 0;">
+                    <strong>🐱 Анатомічний довідник (натисніть на частину тіла):</strong>
+                    <div style="display:flex;flex-wrap:wrap;gap:8px;margin:15px 0;">
+                        <button onclick="showAnatomy('ears')" style="padding:7px 14px;background:#e3f2fd;border:1px solid #90caf9;border-radius:3px;cursor:pointer;font-size:13px;">👂 Вуха</button>
+                        <button onclick="showAnatomy('eyes')" style="padding:7px 14px;background:#e8f5e9;border:1px solid #a5d6a7;border-radius:3px;cursor:pointer;font-size:13px;">👁️ Очі</button>
+                        <button onclick="showAnatomy('skin')" style="padding:7px 14px;background:#fff3e0;border:1px solid #ffcc02;border-radius:3px;cursor:pointer;font-size:13px;">🤲 Шкіра</button>
+                        <button onclick="showAnatomy('whiskers')" style="padding:7px 14px;background:#f3e5f5;border:1px solid #ce93d8;border-radius:3px;cursor:pointer;font-size:13px;">〰️ Вуса</button>
+                        <button onclick="showAnatomy('paws')" style="padding:7px 14px;background:#fce4ec;border:1px solid #f48fb1;border-radius:3px;cursor:pointer;font-size:13px;">🐾 Лапи</button>
+                        <button onclick="showAnatomy('tail')" style="padding:7px 14px;background:#e0f7fa;border:1px solid #80deea;border-radius:3px;cursor:pointer;font-size:13px;">〽️ Хвіст</button>
+                    </div>
+                    <div id="anatomy-info" style="padding:12px;background:#fff;border:1px solid #e0e0e0;border-radius:3px;font-size:14px;min-height:50px;color:#54595d;">Оберіть частину тіла зліва</div>
+                </div>
+
+                <h2>Популяційна статистика</h2>
+                <table class="compare-table">
+                    <tr><th>Показник</th><th>Значення</th><th>Примітка</th></tr>
+                    <tr><td>Кількість сфінксів у світі</td><td>~50 000</td><td>Рідкісна порода</td></tr>
+                    <tr><td>Середня ціна кошеняти</td><td>$500–$2000</td><td>Залежить від лінії</td></tr>
+                    <tr><td>Середня тривалість сну</td><td>16–18 год/день</td><td>Джуніор — 18 год</td></tr>
+                    <tr><td>Метаболізм vs звичайні коти</td><td>На 30% вищий</td><td>Через відсутність шерсті</td></tr>
+                    <tr><td>Температура тіла</td><td>38.5–39.5°C</td><td>На 4°C вища за людей</td></tr>
+                    <tr><td>Середня вага</td><td>3.5–7 кг</td><td>Джуніор — «оптимальна»</td></tr>
+                </table>
+
+                <h2>Генетика</h2>
+                <p>Безшерстість сфінкса зумовлена рецесивним геном <strong>hr</strong> (hairless). Для прояву ознаки кіт повинен отримати обидва алелі (hr/hr). Заводчики схрещують сфінксів з короткошерстими породами для підтримки здоров'я лінії.</p>
+
+                <div class="did-you-know">
+                    <div class="did-you-know-title">🧬 Генетика</div>
+                    <div class="dyk-text">Ген безшерстості сфінкса — той самий, що викликає відсутність хутра у деяких мишей. Він впливає на структуру кератину у волосяних фолікулах, роблячи їх нефункціональними.</div>
+                </div>
+
+                <h2>Вікторина: Чи є ти справжнім знавцем сфінксів?</h2>
+                <div class="quiz-box" id="quiz9">
+                    <h3>Яка температура тіла у сфінкса порівняно зі звичайними котами?</h3>
+                    <button class="quiz-option" onclick="checkQuiz('quiz9', this, false)">❄️ Нижча</button>
+                    <button class="quiz-option" onclick="checkQuiz('quiz9', this, false)">📊 Однакова</button>
+                    <button class="quiz-option" onclick="checkQuiz('quiz9', this, true)">🔥 Вища</button>
+                    <button class="quiz-option" onclick="checkQuiz('quiz9', this, false)">🌡️ Нестабільна</button>
+                    <div class="quiz-result" id="quiz9-result"></div>
+                </div>
+            </div>
+
+            <div class="infobox">
+                <div class="infobox-title">Статистика</div>
+                <table>
+                    <tr><th>Популяція</th><td>~50 000 у світі</td></tr>
+                    <tr><th>Ген безшерстості</th><td>hr (рецесивний)</td></tr>
+                    <tr><th>Хромосома</th><td>B1</td></tr>
+                    <tr><th>Перше схрещування</th><td>1966, Канада</td></tr>
+                    <tr><th>FIFe статус</th><td>Визнана порода</td></tr>
+                </table>
+            </div>
+        </div>
+    </div><!-- /page-9 -->
+
+    <!-- ============================= PAGE 10 ============================= -->
+    <div class="page-section" id="page-10">
+        <div class="wiki-content">
+            <div class="wiki-text">
+                <div class="page-indicator">Сторінка 10 з 10 — <strong>Велика підсумкова вікторина</strong></div>
+
+                <h2>Велика вікторина про Джуніора</h2>
+                <p>Ви прочитали всю енциклопедію? Час перевірити знання! Пройдіть підсумкову вікторину з 5 питань.</p>
+
+                <div id="final-quiz-container" style="background:#f8f9fa;border:1px solid #a2a9b1;padding:25px;border-radius:4px;margin:20px 0;">
+                    <div id="fq-question-block">
+                        <div id="fq-progress" style="font-size:13px;color:#54595d;margin-bottom:12px;"></div>
+                        <div id="fq-question" style="font-size:17px;font-weight:bold;margin-bottom:16px;"></div>
+                        <div id="fq-options"></div>
+                        <div id="fq-feedback" style="margin-top:12px;font-size:15px;font-weight:bold;min-height:20px;"></div>
+                    </div>
+                    <div id="fq-result-block" style="display:none;text-align:center;">
+                        <div id="fq-score-display" style="font-size:50px;margin:10px 0;"></div>
+                        <div id="fq-score-text" style="font-size:22px;font-weight:bold;color:#0645ad;margin-bottom:10px;"></div>
+                        <div id="fq-score-message" style="font-size:15px;color:#54595d;margin-bottom:20px;"></div>
+                        <button onclick="restartFinalQuiz()" style="padding:10px 25px;background:#0645ad;color:white;border:none;border-radius:3px;cursor:pointer;font-size:15px;">🔄 Спробувати знову</button>
+                    </div>
+                </div>
+
+                <h2>Підсумок: Чому Джуніор — найкращий кіт?</h2>
+                <div class="fact-cards">
+                    <div class="fact-card" onclick="flipCard(this)">
+                        <div class="card-front">🏆 Унікальність</div>
+                        <div class="card-back">Один з небагатьох безшерстих котів в Україні з власною онлайн-енциклопедією.</div>
+                        <div class="fact-card-hint">Натисніть</div>
+                    </div>
+                    <div class="fact-card" onclick="flipCard(this)">
+                        <div class="card-front">❤️ Теплота</div>
+                        <div class="card-back">Буквально тепліший за звичайних котів на 4°C. Ідеальна жива грілка.</div>
+                        <div class="fact-card-hint">Натисніть</div>
+                    </div>
+                    <div class="fact-card" onclick="flipCard(this)">
+                        <div class="card-front">😂 Характер</div>
+                        <div class="card-back">Принципово не знає команд. Це не впертість — це філософська позиція.</div>
+                        <div class="fact-card-hint">Натисніть</div>
+                    </div>
+                </div>
+
+                <h2>Залиш коментар для Джуніора</h2>
+                <div style="background:#f8f9fa;border:1px solid #a2a9b1;padding:20px;border-radius:4px;margin:20px 0;">
+                    <textarea id="comment-input" placeholder="Написати щось Джуніору..." style="width:100%;height:80px;padding:8px;border:1px solid #a2a9b1;border-radius:3px;font-size:14px;font-family:Roboto,sans-serif;resize:vertical;box-sizing:border-box;"></textarea>
+                    <button onclick="submitComment()" style="margin-top:8px;padding:8px 20px;background:#795548;color:white;border:none;border-radius:3px;cursor:pointer;font-size:14px;">Надіслати Джуніору 🐾</button>
+                    <div id="comment-response" style="display:none;margin-top:12px;padding:12px;background:#fff3e0;border:1px solid #ffe0b2;border-radius:3px;font-size:14px;font-style:italic;"></div>
+                </div>
+
+                <div class="footnote">
+                    <strong>Примітки:</strong><br>
+                    <sup>[1]</sup> Усі факти про Джуніора задокументовані особисто господарями та перевірені Джуніором (він не заперечував, а значить — погодився).<br>
+                    <sup>[2]</sup> Дані про генетику та здоров'я сфінксів базуються на загальнодоступних ветеринарних джерелах.<br>
+                    <sup>[3]</sup> «Мова Джуніора» — власна розробка господарів на основі 1000+ годин спостережень.
+                </div>
+            </div>
+
+            <div class="infobox">
+                <div class="infobox-title">Джуніор</div>
+                <img src="Джуніор.png" alt="Фото кота Джуніора">
+                <p style="text-align:center;font-size:0.8em;color:#555;margin-top:0;">Джуніор — зірка інтернету та серця господарів</p>
+                <table>
+                    <tr><th>Сторінок в енциклопедії</th><td>10</td></tr>
+                    <tr><th>Рейтинг</th><td>⭐⭐⭐⭐⭐</td></tr>
+                    <tr><th>Статус</th><td><span class="status-badge">Легенда</span></td></tr>
+                </table>
+            </div>
+        </div>
+    </div><!-- /page-10 -->
+
+    <!-- ===== PAGINATION ===== -->
+    <div class="wiki-pagination" id="pagination-bar">
+        <span>Сторінки:</span>
+        <a class="nav-arrow disabled" id="prev-arrow" onclick="changePage(currentPage - 1)">← Попередня</a>
+        <span id="page-links"></span>
+        <a class="nav-arrow" id="next-arrow" onclick="changePage(currentPage + 1)">Наступна →</a>
     </div>
 
+</div><!-- /main-container -->
+
+<script>
+// =================== GAME ===================
+const canvas = document.getElementById('game-canvas');
+const ctx = canvas.getContext('2d');
+const startBtn = document.getElementById('start-btn');
+const gameUi = document.getElementById('game-ui');
+const scoreBoard = document.getElementById('score-board');
+const music = document.getElementById('game-music');
+
+let score = 0;
+let gameActive = false;
+let items = [];
+let junior = { x: 0, y: 0, w: 90, h: 90 };
+let animationId;
+
+const juniorImg = new Image();
+juniorImg.src = 'Джуніор.png';
+
+function initGame() {
+    canvas.style.display = 'block';
+    gameUi.style.display = 'block';
+    canvas.width = canvas.parentElement.clientWidth;
+    canvas.height = canvas.parentElement.clientHeight;
+    junior.x = canvas.width / 2 - junior.w / 2;
+    junior.y = canvas.height - junior.h - 10;
+    score = 0;
+    items = [];
+    gameActive = true;
+    music.currentTime = 0;
+    music.play();
+    requestAnimationFrame(gameLoop);
+}
+
+function spawnItem() {
+    if (Math.random() < 0.05) {
+        items.push({
+            x: Math.random() * (canvas.width - 25),
+            y: -30,
+            speed: 3 + (score / 15),
+            color: '#795548'
+        });
+    }
+}
+
+function update() {
+    spawnItem();
+    items.forEach((item, index) => {
+        item.y += item.speed;
+        if (item.y + 25 > junior.y && item.x + 25 > junior.x && item.x < junior.x + junior.w) {
+            items.splice(index, 1);
+            score++;
+            scoreBoard.innerText = "З'їдено корму: " + score;
+        }
+        if (item.y > canvas.height) {
+            gameOver();
+        }
+    });
+}
+
+function draw() {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    ctx.drawImage(juniorImg, junior.x, junior.y, junior.w, junior.h);
+    items.forEach(item => {
+        ctx.beginPath();
+        ctx.arc(item.x + 12, item.y + 12, 12, 0, Math.PI * 2);
+        ctx.fillStyle = '#8d6e63';
+        ctx.fill();
+        ctx.strokeStyle = '#5d4037';
+        ctx.lineWidth = 2;
+        ctx.stroke();
+    });
+}
+
+function gameLoop() {
+    if (!gameActive) return;
+    update();
+    draw();
+    animationId = requestAnimationFrame(gameLoop);
+}
+
+function gameOver() {
+    gameActive = false;
+    cancelAnimationFrame(animationId);
+    music.pause();
+    alert('Гра завершена! Джуніор з\'їв корму: ' + score + '\nТепер він ситий і щасливий!');
+    canvas.style.display = 'none';
+    gameUi.style.display = 'none';
+    startBtn.style.display = 'block';
+}
+
+startBtn.addEventListener('click', () => {
+    startBtn.style.display = 'none';
+    initGame();
+});
+
+const handleMove = (e) => {
+    if (!gameActive) return;
+    let clientX = (e.touches && e.touches[0]) ? e.touches[0].clientX : e.clientX;
+    let rect = canvas.getBoundingClientRect();
+    let newX = clientX - rect.left - junior.w / 2;
+    if (newX < 0) newX = 0;
+    if (newX > canvas.width - junior.w) newX = canvas.width - junior.w;
+    junior.x = newX;
+};
+
+canvas.parentElement.addEventListener('mousemove', handleMove);
+canvas.parentElement.addEventListener('touchmove', handleMove);
+
+// =================== PAGINATION ===================
+const TOTAL_PAGES = 10;
+let currentPage = 1;
+
+function buildPageLinks() {
+    const container = document.getElementById('page-links');
+    container.innerHTML = '';
+    for (let i = 1; i <= TOTAL_PAGES; i++) {
+        if (i === currentPage) {
+            const s = document.createElement('span');
+            s.className = 'current-page';
+            s.textContent = i;
+            container.appendChild(s);
+        } else {
+            const a = document.createElement('a');
+            a.textContent = i;
+            a.onclick = (function(p){ return function(){ changePage(p); }; })(i);
+            container.appendChild(a);
+        }
+        if (i < TOTAL_PAGES) {
+            container.appendChild(document.createTextNode(' '));
+        }
+    }
+}
+
+function changePage(p) {
+    if (p < 1 || p > TOTAL_PAGES) return;
+    document.getElementById('page-' + currentPage).classList.remove('active');
+    currentPage = p;
+    document.getElementById('page-' + currentPage).classList.add('active');
+    buildPageLinks();
+    document.getElementById('prev-arrow').className = 'nav-arrow' + (currentPage === 1 ? ' disabled' : '');
+    document.getElementById('next-arrow').className = 'nav-arrow' + (currentPage === TOTAL_PAGES ? ' disabled' : '');
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+buildPageLinks();
+
+// =================== DID YOU KNOW ===================
+const dykItems = [
+    'Джуніор чує шурхіт пакету з кормом крізь три стіни.',
+    'Сфінкс використовує людей як живі грілки — їхня температура тіла на 4°C вища за норму.',
+    'Незважаючи на відсутність шерсті, сфінкси НЕ є повністю гіпоалергенними.',
+    'Перший сфінкс народився у Канаді в 1966 році від звичайної кішки.',
+    'Джуніор ніколи не просить їсти — він просто стоїть біля миски та дивиться.',
+    'Сфінкси сплять 16–18 годин на день. Решту часу присвячують їжі.',
+    'Великі вуха сфінкса — це не лише краса, а й чудовий слух.',
+    'Джуніор принципово не знає жодної команди. Це свідома позиція.',
+];
+let dykIndex = 0;
+function nextDyk() { dykIndex = (dykIndex + 1) % dykItems.length; document.getElementById('dyk-text').textContent = dykItems[dykIndex]; }
+function prevDyk() { dykIndex = (dykIndex - 1 + dykItems.length) % dykItems.length; document.getElementById('dyk-text').textContent = dykItems[dykIndex]; }
+
+// =================== COLOR SWATCH ===================
+function selectSwatch(el) {
+    document.querySelectorAll('.swatch').forEach(s => s.classList.remove('selected'));
+    el.classList.add('selected');
+    document.getElementById('selected-swatch-name').textContent = el.dataset.name;
+    document.getElementById('swatch-preview-circle').style.background = el.style.background;
+}
+
+// =================== QUIZ ===================
+function checkQuiz(quizId, btn, isCorrect) {
+    const quiz = document.getElementById(quizId);
+    if (quiz.dataset.answered) return;
+    quiz.dataset.answered = '1';
+    const result = document.getElementById(quizId + '-result');
+    btn.className = 'quiz-option ' + (isCorrect ? 'correct' : 'wrong');
+    result.textContent = isCorrect ? '✅ Правильно! Молодець!' : '❌ Неправильно. Але Джуніор все одно тебе любить!';
+    result.style.color = isCorrect ? '#2e7d32' : '#c62828';
+    quiz.querySelectorAll('.quiz-option').forEach(b => b.style.pointerEvents = 'none');
+}
+
+// =================== MOOD METER ===================
+const moods = [
+    { text: '😾 Джуніор голодний і дуже незадоволений!', pct: 10, color: '#f44336' },
+    { text: '😐 Джуніор ситий, але хотів би ще трохи корму.', pct: 50, color: '#ff9800' },
+    { text: '😸 Джуніор у чудовому настрої! Тільки що поїв.', pct: 90, color: '#4caf50' },
+    { text: '😻 МАКСИМАЛЬНЕ ЗАДОВОЛЕННЯ! Щойно погладили!', pct: 100, color: '#2196f3' },
+];
+function checkMood() {
+    const m = moods[Math.floor(Math.random() * moods.length)];
+    document.getElementById('mood-bar').style.width = m.pct + '%';
+    document.getElementById('mood-bar').style.background = m.color;
+    document.getElementById('mood-display').textContent = m.text;
+}
+
+// =================== NUTRITION ===================
+function showNutritionInfo(name, desc) {
+    const el = document.getElementById('nutrition-info');
+    el.style.display = 'block';
+    el.innerHTML = '<strong>' + name + ':</strong> ' + desc;
+}
+
+// =================== ACCORDION ===================
+function toggleAccordion(header) {
+    const body = header.nextElementSibling;
+    const isOpen = body.classList.contains('open');
+    header.parentElement.parentElement.querySelectorAll('.accordion-body').forEach(b => b.classList.remove('open'));
+    header.parentElement.parentElement.querySelectorAll('.accordion-header').forEach(h => h.classList.remove('open'));
+    if (!isOpen) {
+        body.classList.add('open');
+        header.classList.add('open');
+    }
+}
+
+// =================== FOOD REACTION ===================
+const reactions = [
+    { emoji: '🚀', text: 'Джуніор МИТТЄВО примчав через всю квартиру!' },
+    { emoji: '😍', text: 'Очі Джуніора засяяли щастям! Він вже у мисці!' },
+    { emoji: '💨', text: 'Тільки що спав — вже стоїть біля миски. Як?!' },
+    { emoji: '😼', text: 'Прийшов. Понюхав. Вимагає кращий сорт.' },
+];
+function playFoodReaction() {
+    const r = reactions[Math.floor(Math.random() * reactions.length)];
+    document.getElementById('junior-reaction').textContent = r.emoji;
+    document.getElementById('reaction-text').textContent = r.text;
+}
+
+// =================== CARD FLIP ===================
+function flipCard(card) {
+    card.classList.toggle('flipped');
+}
+
+// =================== CAT TRANSLATOR ===================
+const translations = {
+    purr: '«Людино, ти заслуговуєш на Нобелівську премію за погладжування. Можеш зупинитися лет через... ніколи.»',
+    blink: '«Я тебе кохаю. Але не так сильно, як корм. Але майже.»',
+    morning: '«5:00 ранку — абсолютно нормальний час для сніданку. Встань. Негайно. Встань. Встань.»',
+    tail: '«КОРМ! Є корм? Буде корм? Хочу корм! Привіт!»',
+    stare: '«Я все чую. Все бачу. Просто вирішую не реагувати. Це принципово.»',
+    rubs: '«Ти мій. Ця нога — моя. Ця людина — моя. Все моє.»',
+    toy: '«ГРАЙ ЗІ МНОЮ ПРЯМО ЗАРАЗ. Я не питаю.»',
+    laptop: '«Твій звіт почекає. Я — ні. Пріоритети.»',
+    ignore: '«Я тебе чую. Просто наш договір зараз каже: "ігнорую". Перечитай умови.»',
+};
+function translateCat() {
+    const val = document.getElementById('cat-action-select').value;
+    const el = document.getElementById('cat-translation');
+    if (!val) { el.style.display = 'none'; return; }
+    el.style.display = 'block';
+    el.textContent = translations[val] || '...';
+}
+
+// =================== POLL ===================
+const pollVotes = { love: 0, cute: 0, weird: 0, scared: 0 };
+let hasVoted = false;
+function vote(type) {
+    if (hasVoted) return;
+    hasVoted = true;
+    pollVotes[type]++;
+    const total = Object.values(pollVotes).reduce((a, b) => a + b, 0);
+    const labels = { love: '😍 Обожнюю', cute: '🥰 Мило', weird: '🤔 Незвично', scared: '😅 Трохи страшно' };
+    let result = 'Ваш голос враховано! ';
+    Object.keys(pollVotes).forEach(k => {
+        result += labels[k] + ': ' + Math.round(pollVotes[k]/total*100) + '% | ';
+    });
+    document.getElementById('poll-result').textContent = result.slice(0, -3);
+    document.querySelectorAll('#poll-buttons button').forEach(b => b.style.opacity = '0.6');
+}
+
+// =================== GALLERY ===================
+function openGalleryItem(caption) {
+    const modal = document.getElementById('gallery-modal');
+    document.getElementById('gallery-modal-text').textContent = '📷 ' + caption;
+    modal.style.display = 'block';
+}
+
+// =================== QUOTE GENERATOR ===================
+const quotes = [
+    '«Корм. Зараз. Будь ласка? Ні, не будь ласка — КОРМ. ЗАРАЗ.»',
+    '«Я міг би вивчити команди. Але навіщо? Ви і так все зробите.»',
+    '«Ваше ліжко — моє ліжко. Ваше крісло — моє крісло. Ваш обід — моя дегустація.»',
+    '«Я вас люблю. Але корм люблю трохи більше. Трохи.»',
+    '«Сьогодні я вирішив лягти рівно на ваш ноутбук. Не питайте чому. Просто так.»',
+    '«Ця ковдра — ідеальна температура. Не рухайтесь наступні 6 годин.»',
+    '«Ви думаєте, що це ваш дім. Це мило.»',
+    '«Муркотіння включено. Ласкаво просимо погладити. Термін дії: до першого неправильного руху.»',
+];
+function generateQuote() {
+    const q = quotes[Math.floor(Math.random() * quotes.length)];
+    document.getElementById('junior-quote').textContent = q;
+}
+
+// =================== ANATOMY ===================
+const anatomyData = {
+    ears: '👂 Вуха сфінкса — великі, широкі, без хутра всередині. Чують корм за 3 кімнати та абсолютно ігнорують команди.',
+    eyes: '👁️ Великі, мигдалеподібні очі. Часто жовтого або зеленого кольору. Не мають захисту вій від сонця. Ідеальні для «осудливого погляду».',
+    skin: '🤲 Шкіра покрита мікроскопічним пушком, теплий та оксамитовий на дотик. Виробляє жирові виділення — потребує регулярного купання.',
+    whiskers: '〰️ Вуса у сфінксів або дуже короткі, або повністю відсутні. Деякі завиті. Не впливає на орієнтацію — вони і так знають де корм.',
+    paws: '🐾 М\'які, ніжні лапки з видимими пальчиками. Нігті потребують підстрижки кожні 2–3 тижні. Ідеальні для "масажу" господарів.',
+    tail: '〽️ Хвіст довгий, тонкий, іноді з невеликим пензликом волосся на кінці. Хвіст трубою = щасливий кіт (або кіт що побачив корм).',
+};
+function showAnatomy(part) {
+    document.getElementById('anatomy-info').innerHTML = anatomyData[part];
+}
+
+// =================== CAT AGE CALCULATOR ===================
+function calcCatAge() {
+    const age = parseInt(document.getElementById('cat-age-input').value);
+    let human;
+    if (isNaN(age) || age < 0) { document.getElementById('cat-age-result').textContent = 'Введіть правильний вік'; return; }
+    if (age <= 1) human = Math.round(age * 15);
+    else if (age <= 2) human = 15 + Math.round((age - 1) * 9);
+    else human = 24 + Math.round((age - 2) * 4);
+    document.getElementById('cat-age-result').textContent = age + ' рік/роки кота = приблизно ' + human + ' людських років 🎂';
+}
+
+// =================== FINAL QUIZ ===================
+const finalQuestions = [
+    { q: 'Яка порода у Джуніора?', opts: ['Мейн-кун', 'Сфінкс', 'Сіамський', 'Перська'], correct: 1 },
+    { q: 'Де Джуніор найбільше любить спати?', opts: ['На підлозі', 'На вулиці', 'Під ковдрою', 'На дереві'], correct: 2 },
+    { q: 'Скільки команд знає Джуніор?', opts: ['Багато', 'Деякі', 'Жодної', '3 команди'], correct: 2 },
+    { q: 'Що є головною пристрастю Джуніора?', opts: ['Прогулянки', 'Корм', 'Вода', 'Іграшки'], correct: 1 },
+    { q: 'Як часто потрібно купати сфінкса?', opts: ['Раз на місяць', 'Ніколи', 'Раз на 1–2 тижні', 'Щодня'], correct: 2 },
+];
+let fqIndex = 0, fqScore = 0, fqAnswered = false;
+
+function renderFQ() {
+    const q = finalQuestions[fqIndex];
+    document.getElementById('fq-progress').textContent = 'Питання ' + (fqIndex + 1) + ' з ' + finalQuestions.length;
+    document.getElementById('fq-question').textContent = q.q;
+    document.getElementById('fq-feedback').textContent = '';
+    const opts = document.getElementById('fq-options');
+    opts.innerHTML = '';
+    fqAnswered = false;
+    q.opts.forEach((o, i) => {
+        const btn = document.createElement('button');
+        btn.className = 'quiz-option';
+        btn.textContent = o;
+        btn.onclick = function() { answerFQ(i, btn); };
+        opts.appendChild(btn);
+    });
+}
+
+function answerFQ(i, btn) {
+    if (fqAnswered) return;
+    fqAnswered = true;
+    const q = finalQuestions[fqIndex];
+    const isCorrect = i === q.correct;
+    btn.className = 'quiz-option ' + (isCorrect ? 'correct' : 'wrong');
+    document.getElementById('fq-options').querySelectorAll('.quiz-option')[q.correct].className = 'quiz-option correct';
+    document.getElementById('fq-options').querySelectorAll('.quiz-option').forEach(b => b.style.pointerEvents = 'none');
+    document.getElementById('fq-feedback').textContent = isCorrect ? '✅ Правильно!' : '❌ Неправильно!';
+    document.getElementById('fq-feedback').style.color = isCorrect ? '#2e7d32' : '#c62828';
+    if (isCorrect) fqScore++;
+    setTimeout(() => {
+        fqIndex++;
+        if (fqIndex < finalQuestions.length) { renderFQ(); }
+        else { showFQResult(); }
+    }, 1200);
+}
+
+function showFQResult() {
+    document.getElementById('fq-question-block').style.display = 'none';
+    document.getElementById('fq-result-block').style.display = 'block';
+    const pct = fqScore / finalQuestions.length;
+    let emoji, msg;
+    if (pct === 1) { emoji = '🏆'; msg = 'Ідеальний результат! Джуніор офіційно визнає тебе знавцем!'; }
+    else if (pct >= 0.6) { emoji = '😸'; msg = 'Добре! Джуніор задоволений твоїми знаннями!'; }
+    else { emoji = '😾'; msg = 'Потрібно перечитати енциклопедію. Джуніор ображений.'; }
+    document.getElementById('fq-score-display').textContent = emoji;
+    document.getElementById('fq-score-text').textContent = fqScore + ' / ' + finalQuestions.length + ' правильно';
+    document.getElementById('fq-score-message').textContent = msg;
+}
+
+function restartFinalQuiz() {
+    fqIndex = 0; fqScore = 0;
+    document.getElementById('fq-question-block').style.display = 'block';
+    document.getElementById('fq-result-block').style.display = 'none';
+    renderFQ();
+}
+
+renderFQ();
+
+// =================== COMMENT ===================
+const juniorReplies = [
+    '«Цікаво. Але де корм?»',
+    '«Дякую. Тепер нагодуй мене.»',
+    '«Я прочитав. Але мені важливіше, що зараз на вечерю.»',
+    '«Мур-мур. Твоє послання отримано. Корм?»',
+    '«Прийнято до відома. Підходь до миски о 18:00.»',
+];
+function submitComment() {
+    const text = document.getElementById('comment-input').value.trim();
+    if (!text) return;
+    const r = juniorReplies[Math.floor(Math.random() * juniorReplies.length)];
+    const el = document.getElementById('comment-response');
+    el.style.display = 'block';
+    el.innerHTML = '🐾 <strong>Відповідь Джуніора:</strong> ' + r;
+    document.getElementById('comment-input').value = '';
+}
+</script>
 </body>
 </html>
