@@ -1,0 +1,500 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Вікіпедія Джуніор — Енциклопедія про кота Джуніора</title>
+    <meta name="description" content="Це енциклопедія про прикольного та милого кота Джуніора!">
+    <meta name="keywords" content="Джуніор, Вікіпедія, енциклопедія, кіт, сфінкс.">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <style>
+        /* Основні налаштування */
+        body, html {
+            margin: 0;
+            padding: 0;
+            font-family: 'Roboto', sans-serif;
+            background-color: #f6f6f6;
+            color: #202124;
+            scroll-behavior: smooth;
+        }
+
+        /* Анімація появи */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .main-container {
+            max-width: 1100px;
+            margin: 0 auto;
+            background-color: #fff;
+            padding: 40px;
+            box-shadow: 0 0 20px rgba(0,0,0,0.05);
+            min-height: 100vh;
+            animation: fadeIn 0.8s ease-out;
+        }
+
+        /* Стилі заголовка */
+        .wiki-header {
+            border-bottom: 1px solid #a2a9b1;
+            margin-bottom: 20px;
+            padding-bottom: 5px;
+        }
+
+        .wiki-header h1 {
+            font-family: 'Linux Libertine', 'Georgia', 'Times', serif;
+            font-weight: 400;
+            font-size: 2.5em;
+            margin: 0;
+            color: #000;
+        }
+
+        .wiki-nav {
+            font-size: 13px;
+            color: #54595d;
+            margin-bottom: 15px;
+        }
+
+        /* Контент */
+        .wiki-content {
+            display: flex;
+            gap: 30px;
+            line-height: 1.7;
+        }
+
+        .wiki-text {
+            flex: 1;
+            font-size: 16px;
+        }
+        
+        /* Зміст */
+        .toc {
+            background-color: #f8f9fa;
+            border: 1px solid #a2a9b1;
+            padding: 15px 20px;
+            display: inline-block;
+            margin-bottom: 20px;
+            min-width: 250px;
+            border-radius: 2px;
+        }
+        .toc-title {
+            text-align: center;
+            font-weight: bold;
+            margin-bottom: 10px;
+            font-size: 1.1em;
+        }
+        .toc ul {
+            list-style-type: none;
+            padding-left: 0;
+            margin: 0;
+        }
+        .toc li {
+            margin-bottom: 6px;
+        }
+        .toc a {
+            text-decoration: none;
+            color: #0645ad;
+        }
+        .toc a:hover {
+            text-decoration: underline;
+        }
+
+        /* Інфобокс */
+        .infobox {
+            width: 300px;
+            background-color: #f8f9fa;
+            border: 1px solid #a2a9b1;
+            padding: 15px;
+            font-size: 0.85em;
+            float: right;
+            border-radius: 2px;
+            box-shadow: 2px 2px 5px rgba(0,0,0,0.02);
+        }
+
+        .infobox-title {
+            text-align: center;
+            font-weight: bold;
+            font-size: 1.4em;
+            margin-bottom: 15px;
+            background-color: #eaecf0;
+            padding: 10px;
+            border-radius: 4px;
+        }
+
+        .infobox img {
+            width: 100%;
+            height: auto;
+            border-radius: 2px;
+            margin-bottom: 10px;
+            border: 1px solid #c8ccd1;
+        }
+
+        .infobox table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        .infobox th {
+            text-align: left;
+            padding: 8px;
+            border-bottom: 1px solid #fff;
+            background-color: #eff1f3;
+            width: 45%;
+        }
+
+        .infobox td {
+            padding: 8px;
+            border-bottom: 1px solid #eaecf0;
+        }
+
+        /* Список звичок */
+        .habits-list {
+            background: #fdfdfd;
+            border-left: 5px solid #64b5f6;
+            padding: 15px 20px 15px 40px;
+            margin: 20px 0;
+            list-style-type: disc;
+        }
+
+        .habits-list li {
+            margin-bottom: 8px;
+        }
+
+        .status-badge {
+            display: inline-block;
+            background: #4fc3f7;
+            color: white;
+            padding: 2px 8px;
+            border-radius: 12px;
+            font-size: 0.9em;
+            font-weight: bold;
+        }
+        
+        /* Аудіоплеєр */
+        .audio-section {
+            border: 1px solid #c8ccd1;
+            background-color: #f8f9fa;
+            padding: 15px;
+            border-radius: 4px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin: 20px 0;
+        }
+        
+        .audio-section audio {
+            height: 40px;
+        }
+
+        .color-circle {
+            display: inline-block;
+            width: 14px;
+            height: 14px;
+            border-radius: 50%;
+            background: #7a716e;
+            vertical-align: middle;
+            margin-left: 5px;
+            border: 1px solid #a2a9b1;
+        }
+
+        h2 {
+            border-bottom: 1px solid #a2a9b1;
+            padding-bottom: 5px;
+            margin-top: 35px;
+            font-family: 'Linux Libertine', 'Georgia', serif;
+        }
+
+        /* --- Стилі гри (Покращені) --- */
+        #game-area {
+            position: relative;
+            width: 100%;
+            height: 400px;
+            background: linear-gradient(180deg, #e3f2fd 0%, #ffffff 100%);
+            border: 2px solid #2196f3;
+            border-radius: 12px;
+            overflow: hidden;
+            margin: 20px 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            box-shadow: inset 0 0 15px rgba(33, 150, 243, 0.1);
+        }
+
+        #game-canvas {
+            display: none;
+            width: 100%;
+            height: 100%;
+        }
+
+        #game-ui {
+            position: absolute;
+            top: 15px;
+            left: 0;
+            width: 100%;
+            text-align: center;
+            pointer-events: none;
+            display: none;
+        }
+
+        #score-board {
+            font-size: 28px;
+            font-weight: 800;
+            color: #1565c0;
+            text-shadow: 2px 2px 4px rgba(255, 255, 255, 0.8);
+            font-family: 'Roboto', sans-serif;
+        }
+
+        #start-btn {
+            padding: 18px 40px;
+            font-size: 22px;
+            font-weight: bold;
+            background: linear-gradient(45deg, #2196f3, #00bcd4);
+            color: white;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            box-shadow: 0 6px 15px rgba(33, 150, 243, 0.3);
+            transition: transform 0.2s, box-shadow 0.2s;
+            z-index: 10;
+        }
+
+        #start-btn:hover { 
+            transform: scale(1.05);
+            box-shadow: 0 8px 20px rgba(33, 150, 243, 0.4);
+        }
+
+        @media (max-width: 850px) {
+            .wiki-content { flex-direction: column-reverse; }
+            .infobox { width: 100%; float: none; margin: 0 0 20px 0; }
+            .main-container { padding: 20px; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="main-container">
+        <div class="wiki-nav">
+            <span>Матеріал з Вікіпедії — вільної енциклопедії.</span>
+        </div>
+        
+        <div class="wiki-header">
+            <h1>Джуніор (кіт)</h1>
+        </div>
+
+        <div class="wiki-content">
+            <div class="wiki-text">
+                <p><strong>Джуніор</strong> — унікальний представник роду кішок (лат. <i>Felis catus</i>), що належить до породи <strong>Сфінкс</strong>. Відомий своєю екзотичною зовнішністю, абсолютною відсутністю шерсті та надзвичайною харизмою. На відміну від службових тварин, Джуніор принципово <strong>не знає жодної команди</strong>, оскільки вважає, що світ має обертатися навколо нього, а не навпаки.</p>
+                
+                <div class="toc">
+                    <div class="toc-title">Зміст</div>
+                    <ul>
+                        <li><a href="#appearance">1 Особливості зовнішності</a></li>
+                        <li><a href="#character">2 Характер та інтелект</a></li>
+                        <li><a href="#diet">3 Харчові вподобання</a></li>
+                        <li><a href="#lifestyle">4 Стиль життя та статус</a></li>
+                        <li><a href="#game-section">5 Гра: Джуніор ловить корм</a></li>
+                        <li><a href="#facts">6 Цікаві факти</a></li>
+                    </ul>
+                </div>
+
+                <h2 id="appearance">Особливості зовнішності</h2>
+                <p>Джуніор є класичним представником безшерстих кішок. Його шкіра на дотик нагадує теплий оксамит або персик. Відсутність хутра робить його дуже приємним для обіймів, а також підкреслює його витончені м'язи та великі, «космічні» вуха. Колір шкіри має ніжний відтінок, що додає йому особливого шарму.</p>
+
+                <h2 id="character">Характер та інтелект</h2>
+                <p>Джуніор характеризується як <strong>дуже прикольний та милий кіт</strong>. Його інтелект спрямований не на виконання людських наказів, а на отримання максимального комфорту. Він ігнорує команди «сидіти» чи «дай лапу», віддаючи перевагу щирому прояву любові та тепла до своїх господарів.</p>
+                
+                <div class="audio-section">
+                    <div>
+                        <strong>Голос Джуніора:</strong><br>
+                        <span style="font-size: 0.9em; color: #54595d;">Звук задоволеного сфінкса (муркотіння).</span>
+                    </div>
+                    <audio controls preload="none">
+                        <source src="Sound.mp3" type="audio/mpeg">
+                        Ваш браузер не підтримує аудіоелемент HTML5.
+                    </audio>
+                </div>
+
+                <h2 id="diet">Харчові вподобання</h2>
+                <p>Найбільшою пристрастю Джуніора є <strong>корм</strong>. Його любов до їжі є безмежною. Звук пакунка з кормом, що відкривається, є єдиним сигналом, на який Джуніор реагує миттєво, демонструючи швидкість реакції професійного атлета.</p>
+                <ul class="habits-list">
+                    <li><strong>Корм</strong> — головна мета життя та основне джерело енергії.</li>
+                    <li><strong>Незалежність</strong> — відмова від вивчення будь-яких команд як маніфест свободи.</li>
+                </ul>
+
+                <h2 id="lifestyle">Стиль життя та статус</h2>
+                <p>Джуніор веде активний, але розмірений спосіб життя. Він є центром уваги в домі завдяки своїй незвичній зовнішності та приязному характеру. Він обожнює бути поруч із людьми, грітися на сонечку або під ковдрою.</p>
+
+                <h2 id="game-section">Гра: Джуніор ловить корм</h2>
+                <div id="game-area">
+                    <button id="start-btn">Нагодувати Джуніора</button>
+                    <div id="game-ui">
+                        <div id="score-board">З'їдено корму: 0</div>
+                    </div>
+                    <canvas id="game-canvas"></canvas>
+                    <audio id="game-music" loop>
+                        <source src="Song.mp3" type="audio/mpeg">
+                    </audio>
+                </div>
+                <script>
+                    const canvas = document.getElementById('game-canvas');
+                    const ctx = canvas.getContext('2d');
+                    const startBtn = document.getElementById('start-btn');
+                    const gameUi = document.getElementById('game-ui');
+                    const scoreBoard = document.getElementById('score-board');
+                    const music = document.getElementById('game-music');
+
+                    let score = 0;
+                    let gameActive = false;
+                    let items = [];
+                    let junior = { x: 0, y: 0, w: 90, h: 90 };
+                    let animationId;
+
+                    const juniorImg = new Image();
+                    juniorImg.src = 'Джуніор.png';
+
+                    function initGame() {
+                        canvas.style.display = 'block';
+                        gameUi.style.display = 'block';
+                        canvas.width = canvas.parentElement.clientWidth;
+                        canvas.height = canvas.parentElement.clientHeight;
+                        junior.x = canvas.width / 2 - junior.w / 2;
+                        junior.y = canvas.height - junior.h - 10;
+                        score = 0;
+                        items = [];
+                        gameActive = true;
+                        music.currentTime = 0;
+                        music.play();
+                        requestAnimationFrame(gameLoop);
+                    }
+
+                    function spawnItem() {
+                        if (Math.random() < 0.05) {
+                            items.push({
+                                x: Math.random() * (canvas.width - 25),
+                                y: -30,
+                                speed: 3 + (score / 15),
+                                color: '#795548'
+                            });
+                        }
+                    }
+
+                    function update() {
+                        spawnItem();
+                        items.forEach((item, index) => {
+                            item.y += item.speed;
+                            
+                            if (item.y + 25 > junior.y && item.x + 25 > junior.x && item.x < junior.x + junior.w) {
+                                items.splice(index, 1);
+                                score++;
+                                scoreBoard.innerText = "З'їдено корму: " + score;
+                            }
+
+                            if (item.y > canvas.height) {
+                                gameOver();
+                            }
+                        });
+                    }
+
+                    function draw() {
+                        ctx.clearRect(0, 0, canvas.width, canvas.height);
+                        
+                        // Малюємо Джуніора
+                        ctx.drawImage(juniorImg, junior.x, junior.y, junior.w, junior.h);
+
+                        // Малюємо гранули корму
+                        items.forEach(item => {
+                            ctx.beginPath();
+                            ctx.arc(item.x + 12, item.y + 12, 12, 0, Math.PI * 2);
+                            ctx.fillStyle = '#8d6e63';
+                            ctx.fill();
+                            ctx.strokeStyle = '#5d4037';
+                            ctx.lineWidth = 2;
+                            ctx.stroke();
+                        });
+                    }
+
+                    function gameLoop() {
+                        if (!gameActive) return;
+                        update();
+                        draw();
+                        animationId = requestAnimationFrame(gameLoop);
+                    }
+
+                    function gameOver() {
+                        gameActive = false;
+                        cancelAnimationFrame(animationId);
+                        music.pause();
+                        alert('Гра завершена! Джуніор з’їв корму: ' + score + '\nТепер він ситий і щасливий!');
+                        canvas.style.display = 'none';
+                        gameUi.style.display = 'none';
+                        startBtn.style.display = 'block';
+                    }
+
+                    startBtn.addEventListener('click', () => {
+                        startBtn.style.display = 'none';
+                        initGame();
+                    });
+
+                    const handleMove = (e) => {
+                        if (!gameActive) return;
+                        let clientX = (e.touches && e.touches[0]) ? e.touches[0].clientX : e.clientX;
+                        let rect = canvas.getBoundingClientRect();
+                        let newX = clientX - rect.left - junior.w / 2;
+                        if (newX < 0) newX = 0;
+                        if (newX > canvas.width - junior.w) newX = canvas.width - junior.w;
+                        junior.x = newX;
+                    };
+
+                    canvas.parentElement.addEventListener('mousemove', handleMove);
+                    canvas.parentElement.addEventListener('touchmove', handleMove);
+                </script>
+
+                <h2 id="facts">Цікаві факти</h2>
+                <ul>
+                    <li>Джуніор — професійний ігнорувальник команд.</li>
+                    <li>Він володіє суперздібністю чути шурхіт пакета з кормом через три стіни.</li>
+                    <li>Попри відсутність шерсті, він «наймиліша істота у Всесвіті» за версією власників.</li>
+                    <li>Джуніор ніколи не просить — він просто чекає, поки ви зрозумієте, що пора їсти.</li>
+                </ul>
+            </div>
+
+            <div class="infobox">
+                <div class="infobox-title">Джуніор</div>
+                <img src="Джуніор.png" alt="Фото кота Джуніора">
+                <p style="text-align: center; font-size: 0.8em; color: #555; margin-top: 0;">Джуніор — поціновувач корму та тепла</p>
+                <table>
+                    <tr>
+                        <th>Порода</th>
+                        <td>Сфінкс</td>
+                    </tr>
+                    <tr>
+                        <th>Вид</th>
+                        <td>Кіт свійський</td>
+                    </tr>
+                    <tr>
+                        <th>Вміння</th>
+                        <td>Не знає команд</td>
+                    </tr>
+                    <tr>
+                        <th>Характер</th>
+                        <td>Милий, прикольний</td>
+                    </tr>
+                    <tr>
+                        <th>Колір шкіри</th>
+                        <td>Шоколадний <span class="color-circle" title="Типовий колір сфінкса"></span></td>
+                    </tr>
+                    <tr>
+                        <th>Хобі</th>
+                        <td>Їсти корм</td>
+                    </tr>
+                    <tr>
+                        <th>Статус</th>
+                        <td><span class="status-badge">Головний у домі</span></td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>
